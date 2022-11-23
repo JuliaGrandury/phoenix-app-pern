@@ -1,0 +1,20 @@
+.toapply {
+    background-color: #FFB38C;
+}
+
+.applied {
+    background-color: #FFEEB5;
+}
+
+.interviewing {
+    background-color: #D3E0BA;
+}
+
+.offer {
+    background-color: #B6CCAB;
+}
+
+.rejected {
+    background-color: #E6A38E;
+}
+
