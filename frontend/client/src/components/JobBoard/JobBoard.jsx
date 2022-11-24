@@ -2,15 +2,7 @@ import React, { useState } from 'react'
 import { nanoid } from 'nanoid'
 import styles from './JobBoard.module.css'
 import MOCK_JOB_DATA from '../../MOCK_JOB_DATA.json'
-
-const statusMap = {
-  'To Apply': 'toapply',
-  'Applied': 'applied',
-  'Interviewing': 'interviewing',
-  'Ghosted': 'rejected',
-  'Rejected': 'rejected',
-  'Offer': 'offer'
-}
+import ReadOnlyRow from './ReadOnlyRow'
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState(MOCK_JOB_DATA);
@@ -107,14 +99,7 @@ const JobBoard = () => {
         </thead>
         <tbody>
           {jobs.map((job, index) => (
-            <tr key={index}>
-              {job.companyUrl ? <td><a href={job.companyUrl}>{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
-              <td>{job.jobLocation}</td>
-              <td>{job.companyName}</td>
-              <td>{job.companyDesc}</td>
-              <td className={styles[statusMap[job.appStatus]]}>{job.appStatus}</td>
-              <td>{job.appDate}</td>
-            </tr>
+            <ReadOnlyRow job={job} index={index}/>
           ))}
         </tbody>
       </table>
