@@ -1,0 +1,13 @@
+.PageContainer {
+    width: 100%;
+    padding: 4rem 3rem;
+    font-size: 13px;
+    background-color: white;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #000000A6;
+}
