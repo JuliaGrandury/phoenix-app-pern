@@ -56,7 +56,7 @@ app.put("/jobs/:id", async (req, res) => {
             "UPDATE jobs SET jobTitle=$1, jobLocation=$2, companyName=$3, companyUrl=$4, companyDesc=$5, appStatus=$6, appDate=$7 WHERE id = $8",
             [jobTitle, jobLocation, companyName, companyUrl, companyDesc, appStatus, appDate, id]
         );
-        res.json(`Job with id ${id} was updated`);
+        res.json(`Job with id ${id} was updated to ${updateJob.rows[0]}`);
     } catch (error) {
         console.error(error.message)
     }
@@ -73,9 +73,9 @@ app.delete("/jobs/:id", async (req, res) => {
     }
 })
 
-// ---------------------------------------------------------- //
+// ------------------------------------------------------------- //
 // Querying jobs based on jobTitle, jobLocation and companyName
-// ---------------------------------------------------------- //
+// ------------------------------------------------------------- //
 
 // Query jobs based on location
 app.get("/jobs", async (req, res) => {

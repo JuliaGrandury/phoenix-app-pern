@@ -1,0 +1,23 @@
+{
+  "name": "phoenix-app-pern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server/server.js",
+    "client": "npm start --prefix frontend/client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliaGrandury/phoenix-app-pern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaGrandury/phoenix-app-pern/issues"
+  },
+  "homepage": "https://github.com/JuliaGrandury/phoenix-app-pern#readme"
+}

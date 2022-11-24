@@ -32,14 +32,13 @@ th,
 td {
     border: 1px solid lightgrey;
     padding: 8px;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 th {
-    padding: 10px 0px;
+    padding: 10px 7px;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
     font-size: 14px;
     font-weight: 600;
     background-color: lightgrey;

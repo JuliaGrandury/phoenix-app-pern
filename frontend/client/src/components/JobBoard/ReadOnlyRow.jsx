@@ -8,11 +8,14 @@ const statusMap = {
     'Ghosted': 'rejected',
     'Rejected': 'rejected',
     'Offer': 'offer'
-  }
+}
 
-const ReadOnlyRow = ({ job }, {index}) => {
+const ReadOnlyRow = ({ job, handleEditRequest }) => {
     return (
-        <tr key={index}>
+        <tr>
+            <td>
+                <button type="button" onClick={(e) => handleEditRequest(e, job)}>Edit</button>
+            </td>
             {job.companyUrl ? <td><a href={job.companyUrl}>{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
             <td>{job.jobLocation}</td>
             <td>{job.companyName}</td>

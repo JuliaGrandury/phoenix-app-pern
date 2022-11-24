@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { nanoid } from 'nanoid'
 import styles from './JobBoard.module.css'
 import MOCK_JOB_DATA from '../../MOCK_JOB_DATA.json'
 import ReadOnlyRow from './ReadOnlyRow'
+import WriteRow from './WriteRow'
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState(MOCK_JOB_DATA);
@@ -15,6 +16,17 @@ const JobBoard = () => {
     appDate: ''
   });
 
+  // Consider not using a second hook for this
+  const [editFormData, setEditFormData] = useState({
+    jobTitle: '',
+    jobLocation: '',
+    companyName: '',
+    companyDesc: '',
+    appStatus: '',
+    appDate: ''
+  });
+  const [toEditId, setToEditId] = useState(null);
+
   const handleAddFormChange = (event) => {
     event.preventDefault();
     const fieldName = event.target.getAttribute("name");
@@ -24,10 +36,19 @@ const JobBoard = () => {
     setAddFormData(newFormData);
   }
 
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = { ...editFormData };
+    newFormData[fieldName] = fieldValue;
+    setEditFormData(newFormData);
+  }
+
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
     const newJob = {
-      id: nanoid(),
+      jobId: nanoid(),
       jobTitle: addFormData.jobTitle,
       jobLocation: addFormData.jobLocation,
       companyName: addFormData.companyName,
@@ -38,14 +59,51 @@ const JobBoard = () => {
     const newJobs = [...jobs, newJob];
     setJobs(newJobs);
 
-    for (let i = 0; i < jobs.length; i++) {
-      console.log(jobs[i])
+    // for (let i = 0; i < jobs.length; i++) {
+    //   console.log(jobs[i])
+    // }
+  }
+
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
+    const editedJob = {
+      jobId: editFormData.jobId,
+      jobTitle: editFormData.jobTitle,
+      jobLocation: editFormData.jobLocation,
+      companyName: editFormData.companyName,
+      companyDesc: editFormData.companyDesc,
+      appStatus: editFormData.appStatus,
+      appDate: editFormData.appDate,
     }
+    const newJobs = [...jobs];
+    const editedIndex = jobs.findIndex((job) => job.jobId === toEditId);
+    newJobs[editedIndex] = editedJob;
+    setJobs(newJobs);
+    setToEditId(null);
+  }
+
+  const handleEditRequest = (event, job) => {
+    event.preventDefault();
+    setToEditId(job.jobId);
+    const currentValues = {
+      jobTitle: job.jobTitle,
+      jobLocation: job.jobLocation,
+      companyName: job.companyName,
+      companyDesc: job.companyDesc,
+      appStatus: job.appStatus,
+      appDate: job.appDate
+    }
+    setEditFormData(currentValues);
   }
 
   return (
     <div className={styles.container}>
       <h1>my job applications</h1>
+
+      <div className="data-actions-container">
+        <button>Manually add a Job</button>
+        <button>Import Data  from CSV File</button>
+      </div>
 
       <form onSubmit={handleAddFormSubmit}>
         <input
@@ -86,23 +144,32 @@ const JobBoard = () => {
         <button className={styles.Button} type="submit">Add</button>
       </form>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Company</th>
-            <th>Description</th>
-            <th>Application Status</th>
-            <th>Application Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {jobs.map((job, index) => (
-            <ReadOnlyRow job={job} index={index}/>
-          ))}
-        </tbody>
-      </table>
+      <form onSubmit={handleEditFormSubmit}>
+        <table>
+          <thead>
+            <tr>
+              <th>ACTIONS</th>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Company</th>
+              <th>Description</th>
+              <th>Application Status</th>
+              <th>Application Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jobs.map((job) => (
+              <Fragment>
+                {toEditId === job.jobId ? (
+                  <WriteRow editFormData={editFormData} handleEditFormChange={handleEditFormChange}/>
+                ) : (
+                  <ReadOnlyRow job={job} handleEditRequest={handleEditRequest} />
+                )}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </form>
     </div>
   )
 }
