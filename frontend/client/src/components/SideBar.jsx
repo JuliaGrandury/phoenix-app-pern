@@ -20,7 +20,7 @@ const SideBar = () => {
             <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
             <li><NavLink to='/networkgraph'>Network</NavLink></li>
             <li><NavLink to='/settings'>Settings</NavLink></li>
-            <li><button className='btn' onClick={onLogout}>Logout</button></li>
+            {/* <li><button className='btn' onClick={onLogout}>Logout</button></li> */}
           </>
         ) : (
           <>

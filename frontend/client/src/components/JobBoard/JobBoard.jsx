@@ -114,7 +114,7 @@ const JobBoard = () => {
         </div>
       </div>
 
-      <div className="data-actions-container">
+      <div className={styles.DataActionsContainer}>
         <button className={styles.addDataButton} onClick={(e) => setDisplayForm(displayForm ? false : true)}>Manually add a Job</button>
         <button className={styles.addDataButton} onClick={(e) => alert("ERROR: This feature is not available at the moment, please add job data manually.")}>Import Data  from CSV File</button>
       </div>
