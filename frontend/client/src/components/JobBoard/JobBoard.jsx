@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { nanoid } from 'nanoid'
 import styles from './JobBoard.module.css'
 import MOCK_JOB_DATA from '../../MOCK_JOB_DATA.json'
 
@@ -22,21 +23,39 @@ const JobBoard = () => {
     appDate: ''
   });
 
-  const handleAddFormChange = (e) => {
-    e.preventDefault();
-    const fieldName = e.target.getAttribute("name");
-    const fieldValue = e.target.value;
+  const handleAddFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
   }
 
+  const handleAddFormSubmit = (event) => {
+    event.preventDefault();
+    const newJob = {
+      id: nanoid(),
+      jobTitle: addFormData.jobTitle,
+      jobLocation: addFormData.jobLocation,
+      companyName: addFormData.companyName,
+      companyDesc: addFormData.companyDesc,
+      appStatus: addFormData.appStatus,
+      appDate: addFormData.appDate,
+    };
+    const newJobs = [...jobs, newJob];
+    setJobs(newJobs);
+
+    for (let i = 0; i < jobs.length; i++) {
+      console.log(jobs[i])
+    }
+  }
+
   return (
-    <>
+    <div className={styles.container}>
       <h1>my job applications</h1>
 
-      <h2>add a job</h2>
-      <form>
+      <form onSubmit={handleAddFormSubmit}>
         <input
           type='text'
           name='jobTitle'
@@ -72,7 +91,7 @@ const JobBoard = () => {
           name='appDate'
           placeholder='Application Date'
           onChange={handleAddFormChange} />
-        <button type="submit">Add</button>
+        <button className={styles.Button} type="submit">Add</button>
       </form>
 
       <table>
@@ -99,7 +118,7 @@ const JobBoard = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

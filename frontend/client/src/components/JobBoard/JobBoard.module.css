@@ -1,3 +1,50 @@
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.container {
+    padding: 2rem;
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 4px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin: 0px 4px;
+}
+
+.Button {
+    padding: 4px 6px;
+    margin: 0px 4px;
+    border: 1px solid lightgrey;
+}
+
+table {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid lightgrey;
+    padding: 8px;
+    max-width: 300px;
+}
+
+th {
+    padding: 10px 0px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: lightgrey;
+}
+
 .toapply {
     background-color: #FFB38C;
 }
@@ -17,6 +64,3 @@
 .rejected {
     background-color: #E6A38E;
 }
-
-
-
