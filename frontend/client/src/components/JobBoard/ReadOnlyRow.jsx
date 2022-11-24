@@ -5,7 +5,7 @@ const statusMap = {
     'To Apply': 'toapply',
     'Applied': 'applied',
     'Interviewing': 'interviewing',
-    'Ghosted': 'rejected',
+    'Ghosted': 'ghosted',
     'Rejected': 'rejected',
     'Offer': 'offer'
 }
@@ -17,7 +17,7 @@ const ReadOnlyRow = ({ job, handleEditRequest, handleDeleteRequest }) => {
                 <button type="button" onClick={(e) => handleEditRequest(e, job)}>Edit</button>
                 <button type="button" onClick={() => handleDeleteRequest(job.jobId)}>Delete</button>
             </td>
-            {job.companyUrl ? <td><a href={job.companyUrl}>{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
+            {job.companyUrl ? <td><a href={job.companyUrl} target="_blank">{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
             <td>{job.jobLocation}</td>
             <td>{job.companyName}</td>
             <td>{job.companyDesc}</td>

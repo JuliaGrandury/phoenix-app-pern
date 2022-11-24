@@ -7,14 +7,36 @@ h1 {
 
 .container {
     padding: 2rem;
+    font-size: 14px;
 }
+.container a {
+    color: #1890FF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
 
 input {
     font-family: Arial, Helvetica, sans-serif;
     padding: 4px 4px;
     border: 1px solid lightgrey;
     border-radius: 3px;
-    margin: 0px 4px;
+}
+
+.DataButton {
+    color: #1890FF;
+    font-weight: 600;
+    padding: 4px 6px;
+    margin: 2px;
+    border-radius: 4px;
+    background-color: #d7ecff;
+    border: none;
+}
+
+.addDataForm {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .Button {
@@ -45,21 +67,23 @@ th {
 }
 
 .toapply {
-    background-color: #FFB38C;
+    color: #EF4743;
+    font-weight: 500;
 }
 
 .applied {
-    background-color: #FFEEB5;
+    color: #FFB800;
+    font-weight: 500;
 }
 
-.interviewing {
-    background-color: #D3E0BA;
-}
-
+.interviewing,
 .offer {
-    background-color: #B6CCAB;
+    color: #00AF9B;
+    font-weight: 500;
 }
 
-.rejected {
-    background-color: #E6A38E;
+.rejected,
+.ghosted {
+    color: #000000A6;
+    font-weight: 500;
 }

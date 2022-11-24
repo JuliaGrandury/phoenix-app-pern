@@ -1,5 +1,4 @@
-
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const SideBar = () => {
 
@@ -34,3 +33,4 @@ const SideBar = () => {
 }
 
 export default SideBar
+

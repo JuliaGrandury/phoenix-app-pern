@@ -108,11 +108,12 @@ const JobBoard = () => {
       <h1>my job applications</h1>
 
       <div className="data-actions-container">
-        <button>Manually add a Job</button>
-        <button>Import Data  from CSV File</button>
+        <button className={styles.DataButton}>Manually add a Job</button>
+        <button className={styles.DataButton}>Import Data  from CSV File</button>
       </div>
 
-      <form onSubmit={handleAddFormSubmit}>
+      
+      <form className={styles.addDataForm} onSubmit={handleAddFormSubmit}>
         <input
           type='text'
           name='jobTitle'
