@@ -96,6 +96,13 @@ const JobBoard = () => {
     setEditFormData(currentValues);
   }
 
+  const handleDeleteRequest = (toDeleteId) => {
+    const newJobs = [...jobs];
+    const deleteIndex = jobs.findIndex((job) => job.jobId === toDeleteId);
+    newJobs.splice(deleteIndex, 1);
+    setJobs(newJobs);
+  }
+
   return (
     <div className={styles.container}>
       <h1>my job applications</h1>
@@ -161,9 +168,14 @@ const JobBoard = () => {
             {jobs.map((job) => (
               <Fragment>
                 {toEditId === job.jobId ? (
-                  <WriteRow editFormData={editFormData} handleEditFormChange={handleEditFormChange}/>
+                  <WriteRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange} />
                 ) : (
-                  <ReadOnlyRow job={job} handleEditRequest={handleEditRequest} />
+                  <ReadOnlyRow
+                    job={job}
+                    handleEditRequest={handleEditRequest}
+                    handleDeleteRequest={handleDeleteRequest} />
                 )}
               </Fragment>
             ))}

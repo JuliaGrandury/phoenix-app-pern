@@ -10,11 +10,12 @@ const statusMap = {
     'Offer': 'offer'
 }
 
-const ReadOnlyRow = ({ job, handleEditRequest }) => {
+const ReadOnlyRow = ({ job, handleEditRequest, handleDeleteRequest }) => {
     return (
         <tr>
             <td>
                 <button type="button" onClick={(e) => handleEditRequest(e, job)}>Edit</button>
+                <button type="button" onClick={() => handleDeleteRequest(job.jobId)}>Delete</button>
             </td>
             {job.companyUrl ? <td><a href={job.companyUrl}>{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
             <td>{job.jobLocation}</td>
