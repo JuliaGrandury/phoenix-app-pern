@@ -3,6 +3,7 @@ CREATE DATABASE phoenixapp;
 CREATE TABLE jobs (
     id SERIAL PRIMARY KEY,
     jobTitle TEXT NOT NULLABLE,
+    jobLink TEXT NOT NULLABLE,
     jobCity VARCHAR NOT NULLABLE,
     jobCountry VARCHAR NOT NULLABLE,
     companyName TEXT NOT NULLABLE,

@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+import '../App.css'
 
 const SideBar = () => {
 
@@ -10,8 +11,8 @@ const SideBar = () => {
   }
 
   return (
-    <div>
-      <div className='logo'>Phoenix</div>
+    <div className="header">
+      <div className="logo">Phoenix</div>
       <ul>
         {user ? (
           <>

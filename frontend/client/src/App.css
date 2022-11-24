@@ -5,6 +5,54 @@
 }
 
 body {
-  background-color: #F7F8FA; 
+  background-color: #F7F8FA;
   height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #000000A6;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  /* border-bottom: 1px solid #e6e6e6; */
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.header ul li {
+  margin-left: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  /* color: #3e3e3ea6; */
+}
+
+.header ul li {
+  display: flex;
+  align-items: center;
+}
+
+.header ul li a:visited {
+  color: #3e3e3ea6;
+}
+
+.header ul li a:hover {
+  color: #1890FF;
 }

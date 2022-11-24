@@ -1,33 +1,49 @@
+.PageContainer {
+    width: 100%;
+    padding: 4rem 3rem;
+    font-size: 13px;
+    background-color: white;
+}
+
+
+/* STYLING OF TOP DIV WITH JOB SEARCH HEADERS*/
 h1 {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 18px;
-    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #000000A6;
 }
 
-.container {
-    padding: 2rem;
-    font-size: 14px;
+h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #3e3e3ea6;
 }
-.container a {
+
+.JobSearchDetails {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.topLeft {
+    flex: 50%;
+}
+
+.topRight {
+    flex: 50%;
+    text-align: right;
+}
+
+
+
+/* STYLING OF ADDING ACTIONS AND FORM */
+.addDataButton {
     color: #1890FF;
     font-weight: 600;
-    text-decoration: none;
-}
-
-
-input {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 4px 4px;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-}
-
-.DataButton {
-    color: #1890FF;
-    font-weight: 600;
-    padding: 4px 6px;
-    margin: 2px;
+    padding: 4px 8px;
+    margin-right: 8px;
     border-radius: 4px;
     background-color: #d7ecff;
     border: none;
@@ -36,34 +52,68 @@ input {
 .addDataForm {
     margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
+    gap: 8px;
 }
 
-.Button {
-    padding: 4px 6px;
-    margin: 0px 4px;
+.addDataForm input {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 4px;
     border: 1px solid lightgrey;
+    border-radius: 4px;
+    color: lightgrey;
+}
+
+
+/* STYLING OF JOB TABLE */
+.PageContainer a {
+    color: #1890FF;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.PageContainer button {
+    border: none;
 }
 
 table {
     margin-top: 2rem;
     width: 100%;
+    /* border: 0.5px solid lightgrey; */
+    border-radius: 6px;
+    border-collapse: collapse
 }
 
 th,
 td {
-    border: 1px solid lightgrey;
     padding: 8px;
     max-width: 400px;
 }
 
 th {
-    padding: 10px 7px;
-    text-align: center;
+    padding: 10px 10px;
+    text-align: left;
     text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    background-color: lightgrey;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #3e3e3ea6;
+    background-color: rgb(245, 245, 245);
+}
+
+th:first-of-type {
+    border-top-left-radius: 10px;
+}
+
+th:last-of-type {
+    border-top-right-radius: 10px;
+}
+
+tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 10px;
+}
+
+tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 10px;
 }
 
 .toapply {
