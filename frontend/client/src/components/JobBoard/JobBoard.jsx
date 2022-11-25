@@ -176,7 +176,7 @@ const JobBoard = () => {
               <th>Location</th>
               <th>Company</th>
               <th>Description</th>
-              <th>App Status</th>
+              <th>Status</th>
               <th>App Date</th>
             </tr>
           </thead>
