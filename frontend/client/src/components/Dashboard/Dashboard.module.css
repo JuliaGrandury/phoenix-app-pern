@@ -26,13 +26,15 @@ h1 {
 }
 
 .StatsContainer {
+    grid-row-start: 1;
+    grid-row-end: 3;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .StatsCard {
-    flex-basis: 250px;
+    flex-basis: 220px;
     flex-grow: 1;
     margin: 10px 10px;
     justify-content: space-around;
@@ -49,9 +51,32 @@ h1 {
     justify-content: space-around;
 }
 
+.ProgressBars {
+    padding: 2px 6px;
+}
+
+.DetailedContainer {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .04), 0px 6px 16px rgba(0, 0, 0, .12);
+    grid-row-start: 3;
+    grid-row-end: 8;
+}
+
 .DetailedCard {
-    border: 1px solid blue;
-    margin: 10px;
-    grid-gap: 10px;
+    padding: 18px;
+}
+
+.DetailedCard ul {
+    margin-top: 8px;
+    list-style-type: none;
+}
+
+.DetailedCard li {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    color: #000000A6;
 }
 

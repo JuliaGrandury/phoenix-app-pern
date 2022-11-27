@@ -7,6 +7,7 @@ const ProgressCircle = ({ label, completed, total }) => {
     const completionPercentage = Math.floor(completed / total * 100);
 
     const mainContainerStyles = {
+        padding: '2px 4px',
         marginTop: '10px',
         width: '100px'
     }
