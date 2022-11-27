@@ -4,13 +4,23 @@ import DetailedCard from './DetailedCard'
 
 const Dashboard = () => {
 
-  // Titles are Job Application Statistics and Connection/Networking Statistics
-  const statistics = [{
+  // barValues, circleValue and total will be calculated from DB queries
+  const statisticGroups = [{
     title: "Job Application Statistics",
-    categories: ["Offer From", "Interviewing With", "Rejected From"]
+    barLabels: ["Offer From", "Interviewing With", "Rejected From"],
+    barValues: [5, 30, 55],
+    barColors: ['green', 'yellow', 'red'],
+    circleLabel : "Applied To",
+    circleValue: 90,
+    total: 70,
   }, {
     title: "Network Statistics",
-    categories: ["Reached Out To", "Met With", "To Reach Out To"]
+    barLabels: ["Met With", "Scheduling With", "Lost Touch With"],
+    barValues: [45, 2, 3],
+    barColors: ['green', 'yellow', 'red'],
+    circleLabel : "Reached Out To",
+    circleValue: 50,
+    total: 100,
   }]
 
   return (
@@ -19,7 +29,7 @@ const Dashboard = () => {
 
       <div className={styles.GridContainer}>
         <div className={styles.StatsContainer}>
-          {statistics.map((stat) => <StatsCard stat={stat} />)}
+          {statisticGroups.map((statGroup) => <StatsCard statGroup={statGroup} />)}
         </div>
         
         {/* <DetailedCard /> */}
