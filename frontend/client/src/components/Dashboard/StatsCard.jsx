@@ -26,8 +26,7 @@ const StatsCard = ({ statGroup }) => {
                         completed={statGroup.circleValue}
                         total={statGroup.total} />
                 </div>
-                <div>
-                    {/* Pass in object with label, value, total and bgcolor */}
+                <div className={styles.ProgressBars}>
                     <ProgressBar statObj={createProgressBar(0)} />
                     <ProgressBar statObj={createProgressBar(1)} />
                     <ProgressBar statObj={createProgressBar(2)} />

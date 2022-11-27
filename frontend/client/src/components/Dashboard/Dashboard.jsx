@@ -10,7 +10,7 @@ const Dashboard = () => {
     barLabels: ["Offer From", "Interviewing With", "Rejected From"],
     barValues: [5, 30, 55],
     barColors: ['green', 'yellow', 'red'],
-    circleLabel : "Applied To",
+    circleLabel: "Applied To",
     circleValue: 83,
     total: 90,
   }, {
@@ -18,7 +18,7 @@ const Dashboard = () => {
     barLabels: ["Met With", "Scheduling With", "Lost Touch With"],
     barValues: [45, 2, 3],
     barColors: ['green', 'yellow', 'red'],
-    circleLabel : "Contacted",
+    circleLabel: "Contacted",
     circleValue: 50,
     total: 100,
   }]
@@ -31,16 +31,13 @@ const Dashboard = () => {
         <div className={styles.StatsContainer}>
           {statisticGroups.map((statGroup) => <StatsCard statGroup={statGroup} />)}
         </div>
-        
-        {/* <DetailedCard /> */}
+        <div className={styles.DetailedContainer}>
+          <DetailedCard />
+        </div>
       </div>
-
-      {/* Roadmap of the Week */}
-      {/* work on resume */}
-      {/* send to  */}
-      {/* follow up with ... */}
     </div>
   )
 }
 
 export default Dashboard
+
