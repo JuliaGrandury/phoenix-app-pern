@@ -1,3 +1,5 @@
+import styles from './NetworkGraph.module.css'
+
 class Graph {
   constructor (vertices) {
     this.vertices = vertices;
@@ -32,9 +34,10 @@ class Graph {
 
 const NetworkGraph = () => {
 
-
   return (
-    <div>NetworkGraph</div>
+    <div className={styles.PageContainer}>
+      <h1>Your Network Graph</h1>
+    </div>
   )
 }
 

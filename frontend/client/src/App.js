@@ -4,6 +4,7 @@ import './App.css'
 import Dashboard from './components/Dashboard/Dashboard'
 import JobBoard from './components/JobBoard/JobBoard'
 import NetworkGraph from './components/NetworkGraph/NetworkGraph'
+import Settings from './components/Settings/Settings'
 import SideBar from './components/SideBar'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path='/' exact element={<Dashboard />} />
             <Route path='/jobboard' element={<JobBoard />} />
             <Route path='/networkgraph' element={<NetworkGraph />} />
+            <Route path='/settings' element={<Settings />} />
           </Routes>
         </div>
       </Router >

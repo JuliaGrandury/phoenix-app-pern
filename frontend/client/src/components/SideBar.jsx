@@ -1,5 +1,5 @@
-
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import '../App.css'
 
 const SideBar = () => {
 
@@ -11,8 +11,8 @@ const SideBar = () => {
   }
 
   return (
-    <div>
-      <div className='logo'>Phoenix</div>
+    <div className="header">
+      <div className="logo">Phoenix</div>
       <ul>
         {user ? (
           <>
@@ -20,7 +20,7 @@ const SideBar = () => {
             <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
             <li><NavLink to='/networkgraph'>Network</NavLink></li>
             <li><NavLink to='/settings'>Settings</NavLink></li>
-            <li><button className='btn' onClick={onLogout}>Logout</button></li>
+            {/* <li><button className='btn' onClick={onLogout}>Logout</button></li> */}
           </>
         ) : (
           <>
@@ -34,3 +34,4 @@ const SideBar = () => {
 }
 
 export default SideBar
+
