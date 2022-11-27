@@ -109,8 +109,8 @@ const JobBoard = () => {
       <div className={styles.JobSearchDetails}>
         <div className={styles.topLeft}><h1>My Job Applications</h1></div>
         <div className={styles.topRight}>
-          <h2>Started 3 months ago on Aug 9, 2022</h2>
-          <h2>for Full Stack Software Engineer role</h2>
+          <h2>Started <span style={{"text-decoration": "underline"}}>3 months ago</span> on Aug 9, 2022</h2>
+          <h2>for <span style={{"text-decoration": "underline"}}>Full Stack Software Engineer</span> role</h2>
         </div>
       </div>
 
