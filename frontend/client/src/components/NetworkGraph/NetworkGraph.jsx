@@ -1,7 +1,8 @@
+import ConnectionCard from './ConnectionCard';
 import styles from './NetworkGraph.module.css'
 
 class Graph {
-  constructor (vertices) {
+  constructor(vertices) {
     this.vertices = vertices;
     this.adjacencyList = new Map();
   }
@@ -27,8 +28,8 @@ class Graph {
     }
   }
 
-  bfs() {}
-  dfs() {}
+  bfs() { }
+  dfs() { }
 }
 
 
@@ -37,6 +38,7 @@ const NetworkGraph = () => {
   return (
     <div className={styles.PageContainer}>
       <h1>Your Network Graph</h1>
+      <ConnectionCard />
     </div>
   )
 }
