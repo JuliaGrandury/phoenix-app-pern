@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/JuliaGrandury/phoenix-app-pern/issues"
   },
-  "homepage": "https://github.com/JuliaGrandury/phoenix-app-pern#readme"
+  "homepage": "https://github.com/JuliaGrandury/phoenix-app-pern#readme",
+  "dependencies": {
+    "react-circular-progressbar": "^2.1.0"
+  }
 }

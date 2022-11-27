@@ -11,14 +11,14 @@ const Dashboard = () => {
     barValues: [5, 30, 55],
     barColors: ['green', 'yellow', 'red'],
     circleLabel : "Applied To",
-    circleValue: 90,
-    total: 70,
+    circleValue: 83,
+    total: 90,
   }, {
     title: "Network Statistics",
     barLabels: ["Met With", "Scheduling With", "Lost Touch With"],
     barValues: [45, 2, 3],
     barColors: ['green', 'yellow', 'red'],
-    circleLabel : "Reached Out To",
+    circleLabel : "Contacted",
     circleValue: 50,
     total: 100,
   }]

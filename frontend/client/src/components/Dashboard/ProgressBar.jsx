@@ -9,7 +9,8 @@ const ProgressBar = ({ statObj }) => {
     }
 
     const mainContainerStyles = {
-        width: '190px'
+        marginTop: '10px',
+        width: '210px'
     }
 
     const backDivStyles = {

@@ -49,15 +49,6 @@ h1 {
     justify-content: space-around;
 }
 
-.CircleBar {
-    width: 150px;
-    height: 100px;
-    border: 1px solid purple;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .DetailedCard {
     border: 1px solid blue;
     margin: 10px;
