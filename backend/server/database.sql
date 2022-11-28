@@ -1,43 +1,52 @@
 CREATE DATABASE phoenixapp;
 
-CREATE TABLE jobs (
-    id SERIAL PRIMARY KEY NOT NULLABLE,
-    jobTitle TEXT NOT NULLABLE,
-    jobLink TEXT NOT NULLABLE,
-    jobCity VARCHAR NOT NULLABLE,
-    jobCountry VARCHAR NOT NULLABLE,
-    companyName TEXT NOT NULLABLE,
-    companyUrl TEXT NOT NULLABLE,
-    companyDesc VARCHAR NOT NULLABLE,
-    -- connections: ['Henry Amestoy', 'Kate Wild'],
-    -- connectionStatus: 'Active',
-    -- connectionDate: '2022-09-28',
-    appStatus TEXT NOT NULLABLE,
-    appDate DATE NOT NULLABLE,
-    createdAt timestamp NOT NULLABLE
+CREATE TABLE [IF NOT EXISTS] users (
+    id SERIAL PRIMARY KEY NOT NULL,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    UNIQUE (username),
+    created_at timestamp NOT NULL
 );
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY NOT NULLABLE,
-    username TEXT NOT NULLABLE,
-    email TEXT NOT NULLABLE,
-    password TEXT NOT NULLABLE,
-    UNIQUE (userName),
-    createdAt timestamp NOT NULLABLE
+CREATE TABLE [IF NOT EXISTS] jobs (
+    id SERIAL PRIMARY KEY NOT NULL,
+    role TEXT NOT NULL,
+    role_link TEXT NOT NULL,
+    city VARCHAR NOT NULL,
+    country VARCHAR NOT NULL,
+    company TEXT NOT NULL,
+    company_link TEXT NOT NULL,
+    description VARCHAR NOT NULL,
+    connections TEXT [] NOT NULL,
+    status TEXT NOT NULL,
+    applied_on DATE NOT NULL,
+    created_at timestamp NOT NULL
 );
 
-CREATE TABLE connections (
-    id SERIAL PRIMARY KEY NOT NULLABLE,
-    fullname TEXT NOT NULLABLE, 
-    role TEXT NOT NULLABLE,
-    company TEXT NOT NULLABLE,
-    contactDates DATE [] NOT NULLABLE,
-    contactInformation {phone: TEXT NOT NULLABLE, email: TEXT NOT NULLABLE, linkedin: TEXT NOT NULLABLE},
-    offers TEXT [] NOT NULLABLE,
-    secondaryConnections TEXT [] NOT NULLABLE,
-    homework: TEXT [] NOT NULLABLE,
-    status TEXT NOT NULLABLE,
+-- because contact_dates is an array of "dates" to "note_link" pairs
+CREATE EXTENSION HSTORE;
+
+-- making my own composite type for contact information
+CREATE TYPE contactinfo_item AS (
+    phone TEXT,
+    email TEXT,
+    linkedin TEXT
 )
+
+CREATE TABLE [IF NOT EXISTS] connections (
+    id SERIAL PRIMARY KEY NOT NULL,
+    fullname TEXT NOT NULL, 
+    role TEXT NOT NULL,
+    company TEXT NOT NULL,
+    contact_dates HSTORE [] NOT NULL,
+    contact_information contactinfo_item,
+    offers TEXT [] NOT NULL,
+    secondary_cons TEXT [] NOT NULL,
+    homework TEXT [] NOT NULL,
+    status TEXT NOT NULL,
+)
+
 
 -- add indexing to jobTitle, jobLocation, companyName and appStatus
 
