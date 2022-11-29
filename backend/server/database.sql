@@ -1,15 +1,15 @@
 CREATE DATABASE phoenixapp;
 
-CREATE TABLE [IF NOT EXISTS] users (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
     username TEXT NOT NULL,
     email TEXT NOT NULL,
     password TEXT NOT NULL,
-    UNIQUE (username),
-    created_at timestamp NOT NULL
+    created_at timestamp NOT NULL,
+    UNIQUE (username)
 );
 
-CREATE TABLE [IF NOT EXISTS] jobs (
+CREATE TABLE jobs (
     id SERIAL PRIMARY KEY NOT NULL,
     role TEXT NOT NULL,
     role_link TEXT NOT NULL,
@@ -18,10 +18,11 @@ CREATE TABLE [IF NOT EXISTS] jobs (
     company TEXT NOT NULL,
     company_link TEXT NOT NULL,
     description VARCHAR NOT NULL,
-    connections TEXT [] NOT NULL,
+    connections [],
     status TEXT NOT NULL,
     applied_on DATE NOT NULL,
-    created_at timestamp NOT NULL
+    created_at timestamp NOT NULL,
+    FOREIGN KEY(connections) REFERENCES connections(id)
 );
 
 -- because contact_dates is an array of "dates" to "note_link" pairs
@@ -32,20 +33,28 @@ CREATE TYPE contactinfo_item AS (
     phone TEXT,
     email TEXT,
     linkedin TEXT
-)
+);
 
-CREATE TABLE [IF NOT EXISTS] connections (
+CREATE TABLE connections (
     id SERIAL PRIMARY KEY NOT NULL,
     fullname TEXT NOT NULL, 
     role TEXT NOT NULL,
     company TEXT NOT NULL,
-    contact_dates HSTORE [] NOT NULL,
+    contact_dates hstore[] NOT NULL,
     contact_information contactinfo_item,
-    offers TEXT [] NOT NULL,
-    secondary_cons TEXT [] NOT NULL,
-    homework TEXT [] NOT NULL,
-    status TEXT NOT NULL,
+    offers TEXT[] NOT NULL,
+    secondary_cons TEXT[] NOT NULL,
+    homework TEXT[] NOT NULL,
+    status TEXT NOT NULL
+);
+
+-- m to m table of users to other users
+CREATE TABLE granted_accesses (
 )
+
+INSERT INTO connections (fullname, role, company, contact_dates, contact_information, offers, secondary_cons, homework, status) 
+VALUES ('Liam Jolley', 'Software Engineer', '{"Dec 9"=>"google.com", "Dec 10"=>"linkedincom", "Nov 20"=>"bla", "Nov 24"=>"google.com"}', 
+'ROW("9174235567", "test@gmail.com", "louie@linkedin.com")', '["Resume Review", "]'), ;
 
 
 -- add indexing to jobTitle, jobLocation, companyName and appStatus
