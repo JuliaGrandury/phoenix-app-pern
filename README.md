@@ -8,7 +8,7 @@
   <h3 align="center">Phoenix</h3>
 
   <p align="center">
-    An app that keeps 
+    An app here to help you stay on top of your job search and never miss another opportunity!
     <br />
     <a href="https://github.com/JuliaGrandury/phoenix-app-pern"><strong>Explore the docs »</strong></a>
     <br />
@@ -49,9 +49,10 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 **TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
-- Notifications when applying to a job
-- 
-
+- Allowing job seekers to give mentors, parents or accountability buddies access to their progress
+- Weekly summary emails to the job seeker and their supporters
+- Notifications when a new job is created, a job status is updated or a job is deleted
+- Etc...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,7 +92,7 @@
 <!-- ROADMAP -->
 ## Roadmap
 - [ ] add notifications when job is created, status is updated, etc.
-- [ ] add 
+- [ ] add extension or integration with job boards and other applications to suggest roles to add 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
