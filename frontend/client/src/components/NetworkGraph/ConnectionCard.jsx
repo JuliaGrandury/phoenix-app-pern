@@ -27,6 +27,7 @@ const ConnectionCard = () => {
             </div>
             <div className={styles.RightDiv}>
                 <h4>Offered Services</h4>
+                {connection.offers.map((offer) => <div className='tag'>{offer}</div>)}
             </div>
             <div className={styles.RightDiv}>
                 <h4>Contact Information</h4>
