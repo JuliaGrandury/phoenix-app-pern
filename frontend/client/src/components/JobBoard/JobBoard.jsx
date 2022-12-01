@@ -9,22 +9,34 @@ const JobBoard = () => {
   const [jobs, setJobs] = useState(MOCK_JOB_DATA);
   const [displayForm, setDisplayForm] = useState(false);
   const [addFormData, setAddFormData] = useState({
-    jobTitle: '',
-    jobLocation: '',
-    companyName: '',
-    companyDesc: '',
-    appStatus: '',
-    appDate: ''
+    role: '',
+    role_link: '',
+    city: '',
+    state: '',
+    country: '',
+    company: '',
+    company_link: '',
+    description: '',
+    connections: '',
+    status: '',
+    applied_on: '',
+    created_at: ''
   });
 
   // Consider not using a second hook for this
   const [editFormData, setEditFormData] = useState({
-    jobTitle: '',
-    jobLocation: '',
-    companyName: '',
-    companyDesc: '',
-    appStatus: '',
-    appDate: ''
+    role: '',
+    role_link: '',
+    city: '',
+    state: '',
+    country: '',
+    company: '',
+    company_link: '',
+    description: '',
+    connections: '',
+    status: '',
+    applied_on: '',
+    created_at: ''
   });
   const [toEditId, setToEditId] = useState(null);
 
@@ -49,13 +61,18 @@ const JobBoard = () => {
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
     const newJob = {
-      jobId: nanoid(),
-      jobTitle: addFormData.jobTitle,
-      jobLocation: addFormData.jobLocation,
-      companyName: addFormData.companyName,
-      companyDesc: addFormData.companyDesc,
-      appStatus: addFormData.appStatus,
-      appDate: addFormData.appDate,
+      id: nanoid(),
+      role: addFormData.role,
+      role_link: addFormData.role_link,
+      city: addFormData.city,
+      state: addFormData.state,
+      country: addFormData.country,
+      company: addFormData.company,
+      company_link: addFormData.company_link,
+      description: addFormData.description,
+      status: addFormData.status,
+      applied_on: addFormData.applied_on,
+      created_at: addFormData.created_at  
     };
     const newJobs = [...jobs, newJob];
     setJobs(newJobs);
@@ -68,16 +85,21 @@ const JobBoard = () => {
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
     const editedJob = {
-      jobId: editFormData.jobId,
-      jobTitle: editFormData.jobTitle,
-      jobLocation: editFormData.jobLocation,
-      companyName: editFormData.companyName,
-      companyDesc: editFormData.companyDesc,
-      appStatus: editFormData.appStatus,
-      appDate: editFormData.appDate,
+      id: editFormData.id,
+      role: editFormData.role,
+      role_link: editFormData.role_link,
+      city: editFormData.city,
+      state: editFormData.state,
+      country: editFormData.country,
+      company: editFormData.company,
+      company_link: editFormData.company_link,
+      description: editFormData.description,
+      status: editFormData.status,
+      applied_on: editFormData.applied_on,
+      created_at: editFormData.created_at 
     }
     const newJobs = [...jobs];
-    const editedIndex = jobs.findIndex((job) => job.jobId === toEditId);
+    const editedIndex = jobs.findIndex((job) => job.id === toEditId);
     newJobs[editedIndex] = editedJob;
     setJobs(newJobs);
     setToEditId(null);
@@ -85,21 +107,21 @@ const JobBoard = () => {
 
   const handleEditRequest = (event, job) => {
     event.preventDefault();
-    setToEditId(job.jobId);
+    setToEditId(job.id);
     const currentValues = {
-      jobTitle: job.jobTitle,
-      jobLocation: job.jobLocation,
-      companyName: job.companyName,
-      companyDesc: job.companyDesc,
-      appStatus: job.appStatus,
-      appDate: job.appDate
+      role: job.role,
+      city: job.city,
+      company: job.company,
+      description: job.description,
+      status: job.status,
+      applied_on: job.applied_on
     }
     setEditFormData(currentValues);
   }
 
   const handleDeleteRequest = (toDeleteId) => {
     const newJobs = [...jobs];
-    const deleteIndex = jobs.findIndex((job) => job.jobId === toDeleteId);
+    const deleteIndex = jobs.findIndex((job) => job.id === toDeleteId);
     newJobs.splice(deleteIndex, 1);
     setJobs(newJobs);
   }
@@ -109,8 +131,8 @@ const JobBoard = () => {
       <div className={styles.JobSearchDetails}>
         <div className={styles.topLeft}><h1>My Job Applications</h1></div>
         <div className={styles.topRight}>
-          <h2>Started <span style={{"text-decoration": "underline"}}>3 months ago</span> on Aug 9, 2022</h2>
-          <h2>for <span style={{"text-decoration": "underline"}}>Full Stack Software Engineer</span> role</h2>
+          <h2>Started <span style={{ "text-decoration": "underline" }}>3 months ago</span> on Aug 9, 2022</h2>
+          <h2>for <span style={{ "text-decoration": "underline" }}>Full Stack Software Engineer</span> role</h2>
         </div>
       </div>
 
@@ -122,35 +144,35 @@ const JobBoard = () => {
       <form className={styles.addDataForm} onSubmit={handleAddFormSubmit} style={displayForm ? { display: "flex" } : { display: "none" }}>
         <input
           type='text'
-          name='jobTitle'
+          name='role'
           required='required'
           placeholder='Job Title'
           onChange={handleAddFormChange} />
         <input
           type='text'
-          name='jobLocation'
+          name='city'
           required='required'
           placeholder='Job Location'
           onChange={handleAddFormChange} />
         <input
           type='text'
-          name='companyName'
+          name='company'
           required='required'
           placeholder='Company Name'
           onChange={handleAddFormChange} />
         <input
           type='text'
-          name='companyDesc'
+          name='description'
           required='required'
           placeholder='Company Description'
           onChange={handleAddFormChange} />
         <input
           type='text'
-          name='appStatus'
+          name='status'
           required='required'
           placeholder='Application Status'
           onChange={handleAddFormChange} />
-        {/* <select name='appStatus' required='required'onChange={handleAddFormChange}>
+        {/* <select name='status' required='required'onChange={handleAddFormChange}>
           <option value="" disabled selected hidden>App Status</option>
           <option value="To Apply">To Apply</option>
           <option value="Applied">Applied</option>
@@ -161,7 +183,7 @@ const JobBoard = () => {
         </select> */}
         <input
           type='date'
-          name='appDate'
+          name='applied_on'
           placeholder='Application Date'
           onChange={handleAddFormChange} />
         <button className={styles.addDataButton} type="submit">Add</button>
@@ -183,7 +205,7 @@ const JobBoard = () => {
           <tbody>
             {jobs.map((job) => (
               <Fragment>
-                {toEditId === job.jobId ? (
+                {toEditId === job.id ? (
                   <WriteRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange} />

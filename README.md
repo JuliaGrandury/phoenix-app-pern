@@ -1,27 +1,133 @@
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/JuliaGrandury/phoenix-app-pern">
+    <img src="" width="80" height="80"/>
+  </a>
+
+  <h3 align="center">Phoenix</h3>
+
+  <p align="center">
+    An app that keeps 
+    <br />
+    <a href="https://github.com/JuliaGrandury/phoenix-app-pern"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/JuliaGrandury/phoenix-app-pern">View Demo</a>
+    ·
+    <a href="https://github.com/JuliaGrandury/phoenix-app-pern/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/JuliaGrandury/phoenix-app-pern/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-- Why this project (problem, users, solution, future uses)
-- Why this tech stack
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+**TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
+- Notifications when applying to a job
+- 
 
 
-**Why** This past fall (2022), I went through my second job search in the last year after unfortunately having my job rescinded only hours before I was meant to start. For a [Girls in Tech](https://girlsintech.org/) hackathon I participated in about a month later, I coincidentally worked on an application for Columbia's [Justice Through Code](https://centerforjustice.columbia.edu/justicethroughcode) program - which offers access to career opportunities in technology to formerly incarcerated people in hopes of fighting mass incarceration in the US. This applicaiton was meant to allow mentors in the program to track their mentees progress and
-
-These experiences inspired me to build an application that could serve for any job seeker with or without a mentor, parent, or accountability partner who is also looking to encourage and help them on this often difficult journey.
-
-**TLDR**; Phoenix allows users centralize and streamline their job search with job application and network tracking, notifications and updates all in one application. Features include:
-- Job Data Addition with manual adding, CSV file import or integration with LinkedIn, Indeed, Hired and Glassdoor
-- Weekly summary emails on the seekers progress
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
+### Built With
+* [PostgreSQL](https://www.postgresql.org/)
+* [Express.js](https://expressjs.com/)
+* [React](https://reactjs.org/)
+* [Node.js](https://nodejs.org/)
 
-Features in Development
-- [ ] Accounting for Job Url in Job Board
-- [ ] Account for Job Url and Company Url in WriteRows.jsx
-- [ ] Allowing for import of CSV data in Job Board
-- [ ] Notifications for Job Board and Network Graph
-- [ ] Authentication and Authorization and with that the Account Settings
-- [ ] Add front end and back end testing
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started with LifeCycle
+
+1. Download the code zip by clicking on the green "Code" button > Download Zip or clone the repository by doing 
+   ```sh
+   git clone https://github.com/JuliaGrandury/phoenix-app-pern.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Install NPM dev dependencies
+   ```sh
+   npm install concurrently nodemon
+   ```
+4. Create a PostgreSQL Database and store your database password
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+- [ ] add notifications when job is created, status is updated, etc.
+- [ ] add 
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Adding AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Julia Grandury - booleanjules@gmail.com
+
+Project Link: [https://github.com/JuliaGrandury/phoenix-app-pern](https://github.com/JuliaGrandury/phoenix-app-pern)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
