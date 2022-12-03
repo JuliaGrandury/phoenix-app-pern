@@ -5,14 +5,14 @@ import Dashboard from './components/Dashboard/Dashboard'
 import JobBoard from './components/JobBoard/JobBoard'
 import NetworkGraph from './components/NetworkGraph/NetworkGraph'
 import Settings from './components/Settings/Settings'
-import SideBar from './components/SideBar'
+import NavBar from './components/NavBar'
 
 function App() {
   return (
     <>
       <Router>
         <div className='appcontainer'>
-          <SideBar />
+          <NavBar />
           <Routes>
             <Route path='/' exact element={<Dashboard />} />
             <Route path='/jobboard' element={<JobBoard />} />

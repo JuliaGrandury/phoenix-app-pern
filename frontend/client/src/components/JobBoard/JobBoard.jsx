@@ -72,7 +72,7 @@ const JobBoard = () => {
       description: addFormData.description,
       status: addFormData.status,
       applied_on: addFormData.applied_on,
-      created_at: addFormData.created_at  
+      created_at: addFormData.created_at
     };
     const newJobs = [...jobs, newJob];
     setJobs(newJobs);
@@ -96,7 +96,7 @@ const JobBoard = () => {
       description: editFormData.description,
       status: editFormData.status,
       applied_on: editFormData.applied_on,
-      created_at: editFormData.created_at 
+      created_at: editFormData.created_at
     }
     const newJobs = [...jobs];
     const editedIndex = jobs.findIndex((job) => job.id === toEditId);
@@ -131,13 +131,13 @@ const JobBoard = () => {
       <div className={styles.JobSearchDetails}>
         <div className={styles.topLeft}><h1>My Job Applications</h1></div>
         <div className={styles.topRight}>
-          <h2>Started <span style={{ "text-decoration": "underline" }}>3 months ago</span> on Aug 9, 2022</h2>
-          <h2>for <span style={{ "text-decoration": "underline" }}>Full Stack Software Engineer</span> role</h2>
+          <h2>Started <span style={{ textDecoration: "underline" }}>3 months ago</span> on Aug 9, 2022</h2>
+          <h2>for <span style={{ textDecoration: "underline" }}>Full Stack Software Engineer</span> role</h2>
         </div>
       </div>
 
       <div className={styles.DataActionsContainer}>
-        <button className={styles.addDataButton} onClick={(e) => setDisplayForm(displayForm ? false : true)}>Manually add a Job</button>
+        <button id="addJobButton" className={styles.addDataButton} onClick={(e) => setDisplayForm(displayForm ? false : true)}>Manually add a Job</button>
         <button className={styles.addDataButton} onClick={(e) => alert("ERROR: This feature is not available at the moment, please add job data manually.")}>Import Data  from CSV File</button>
       </div>
 
