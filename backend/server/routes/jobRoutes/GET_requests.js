@@ -3,7 +3,7 @@ const app = express()
 const pool = require('../../config/db');
 
 // Get all jobs
-app.get("/jobs", async (req, res) => {
+const getAllJobs = app.get("/jobs", async (req, res) => {
     try {
         const allJobs = await pool.query("SELECT * FROM jobs");
         res.json(allJobs.rows);

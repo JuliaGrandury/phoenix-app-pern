@@ -22,6 +22,7 @@
   "homepage": "https://github.com/JuliaGrandury/phoenix-app-pern#readme",
   "dependencies": {
     "concurrently": "^7.6.0",
-    "react-circular-progressbar": "^2.1.0"
+    "react-circular-progressbar": "^2.1.0",
+    "react-hook-form": "^7.40.0"
   }
 }

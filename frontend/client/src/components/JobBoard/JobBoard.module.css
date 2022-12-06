@@ -50,6 +50,7 @@ h2 {
 .addDataForm {
     margin-top: 1rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 

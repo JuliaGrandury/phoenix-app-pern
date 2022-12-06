@@ -1,55 +1,51 @@
-import React from 'react'
+import React, { useState, Fragment } from 'react'
+import { nanoid } from 'nanoid'
+import styles from './JobBoard.module.css'
 
-const AddJobForm = () => {
-    return (
-        <form className={styles.addDataForm} onSubmit={handleAddFormSubmit} style={displayForm ? { display: "flex" } : { display: "none" }}>
-            <input
-                type='text'
-                name='role'
-                required='required'
-                placeholder='Job Title'
-                onChange={handleAddFormChange} />
-            <input
-                type='text'
-                name='city'
-                required='required'
-                placeholder='Job Location'
-                onChange={handleAddFormChange} />
-            <input
-                type='text'
-                name='company'
-                required='required'
-                placeholder='Company Name'
-                onChange={handleAddFormChange} />
-            <input
-                type='text'
-                name='description'
-                required='required'
-                placeholder='Company Description'
-                onChange={handleAddFormChange} />
-            <input
-                type='text'
-                name='status'
-                required='required'
-                placeholder='Application Status'
-                onChange={handleAddFormChange} />
-            {/* <select name='status' required='required'onChange={handleAddFormChange}>
-          <option value="" disabled selected hidden>App Status</option>
-          <option value="To Apply">To Apply</option>
-          <option value="Applied">Applied</option>
-          <option value="Interviewing">Interviewing</option>
-          <option value="Ghosted">Ghosted</option>
-          <option value="Rejected">Rejected</option>
-          <option value="Offer">Offer</option>
-        </select> */}
-            <input
-                type='date'
-                name='applied_on'
-                placeholder='Application Date'
-                onChange={handleAddFormChange} />
-            <button className={styles.addDataButton} type="submit">Add</button>
-        </form>
-    )
+const AddJobForm = ({alljobs}) => {
+  const [jobs, setJobs] = useState(alljobs);
+  const [jobAddition, setJobAddition] = useState({
+    role: '',
+    company: '',
+    status: '',
+    applied_on: '',
+  });
+
+  // Update state hooks as user types into form
+  const handleAddJobFormChange = (event) => {
+    event.preventDefault();
+    const field = event.target.getAttribute("name");
+    const value = event.target.value;
+    const newFormData = { ...jobAddition };
+    newFormData[field] = value;
+    setJobAddition(newFormData);
+  }
+
+  // Update table data when user submits form
+  const handleAddJobFormSubmit = (event) => {
+    event.preventDefault();
+    const newJob = {
+      id: nanoid(),
+      role: jobAddition.role,
+      company: jobAddition.company,
+      status: jobAddition.status,
+      applied_on: new Date().toLocaleDateString('en-US'),
+      //created_at: new Date().toLocaleDateString('en-US'),
+    };
+    console.log(newJob);
+    const newJobs = [...jobs, newJob];
+    setJobs(newJobs);
+  }
+
+  return (
+    <form className={styles.addDataForm} onSubmit={handleAddJobFormSubmit}>
+      <input type='text' name='role' placeholder='Role...' onChange={handleAddJobFormChange} />
+      <input type='text' name='company' placeholder='Company...' onChange={handleAddJobFormChange} />
+      <input type='text' name='status' placeholder='Status...' onChange={handleAddJobFormChange} />
+      {/* <input type='text' name='applied_on' placeholder='Applied On...' onChange={handleAddJobFormChange} /> */}
+      <button type='submit'>Add</button>
+    </form>
+  )
 }
 
 export default AddJobForm
