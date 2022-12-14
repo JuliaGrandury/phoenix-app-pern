@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/phoenix-app-pern/static/css/main.23c21d48.css",
+    "main.js": "/phoenix-app-pern/static/js/main.e1a1717b.js",
+    "index.html": "/phoenix-app-pern/index.html",
+    "main.23c21d48.css.map": "/phoenix-app-pern/static/css/main.23c21d48.css.map",
+    "main.e1a1717b.js.map": "/phoenix-app-pern/static/js/main.e1a1717b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23c21d48.css",
+    "static/js/main.e1a1717b.js"
+  ]
+}
