@@ -1,14 +1,14 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import '../App.css'
+import { NavLink } from 'react-router-dom'
+import '../../App.css'
 
-const SideBar = () => {
+const NavBar = () => {
 
   // Change after authorization/authentication are complete
   const user = true
 
-  const onLogout = () => {
-    console.log('User wants to logout')
-  }
+  // const onLogout = () => {
+  //   console.log('User wants to logout')
+  // }
 
   return (
     <div className="header">
@@ -20,7 +20,6 @@ const SideBar = () => {
             <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
             <li><NavLink to='/networkgraph'>Network</NavLink></li>
             <li><NavLink to='/settings'>Settings</NavLink></li>
-            {/* <li><button className='btn' onClick={onLogout}>Logout</button></li> */}
           </>
         ) : (
           <>
@@ -33,5 +32,5 @@ const SideBar = () => {
   )
 }
 
-export default SideBar
+export default NavBar
 

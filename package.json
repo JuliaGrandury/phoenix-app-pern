@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node backend/server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server": "nodemon backend/server/server.js",
     "client": "npm start --prefix frontend/client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -22,6 +22,12 @@
   "homepage": "https://github.com/JuliaGrandury/phoenix-app-pern#readme",
   "dependencies": {
     "concurrently": "^7.6.0",
-    "react-circular-progressbar": "^2.1.0"
+    "react-circular-progressbar": "^2.1.0",
+    "react-hook-form": "^7.40.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './JobBoard.module.css'
 
 const statusMap = {
@@ -17,12 +16,13 @@ const ReadOnlyRow = ({ job, handleEditRequest, handleDeleteRequest }) => {
                 <button type="button" onClick={(e) => handleEditRequest(e, job)}><img src="https://img.icons8.com/small/16/null/pencil.png"/></button>
                 <button type="button" onClick={() => handleDeleteRequest(job.jobId)}><img src="https://img.icons8.com/small/16/null/delete.png"/></button>
             </td>
-            {job.companyUrl ? <td><a href={job.companyUrl} target="_blank">{job.jobTitle}</a></td> : <td>{job.jobTitle}</td>}
-            <td>{job.jobLocation}</td>
-            {job.companyUrl ? <td><a href={job.companyUrl} target="_blank">{job.companyName}</a></td> : <td>{job.companyName}</td>}
-            <td>{job.companyDesc}</td>
-            <td className={styles[statusMap[job.appStatus]]}>{job.appStatus}</td>
-            <td>{job.appDate}</td>
+            {job.company_link ? <td><a href={job.company_link} target="_blank">{job.role}</a></td> : <td>{job.role}</td>}
+            <td>{job.city}</td>
+            {job.company_link ? <td><a href={job.company_link} target="_blank">{job.company}</a></td> : <td>{job.company}</td>}
+            <td>{job.description}</td>
+            <td>No Connections</td>
+            <td className={styles[statusMap[job.status]]}>{job.status}</td>
+            <td>{job.applied_on}</td>
         </tr>
     )
 }
