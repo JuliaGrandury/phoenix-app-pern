@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const pool = require('../../config/db');
+const pool = require('../../config/db')
 
 // Get all jobs
 const getAllJobs = app.get("/jobs", async (req, res) => {
