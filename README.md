@@ -46,7 +46,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+
+https://user-images.githubusercontent.com/46718089/211704167-f79dff6c-0cc7-438f-ae05-ba681029340b.mov
+
+
 
 **TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
 - Allowing job seekers to give mentors, parents or accountability buddies access to their progress
