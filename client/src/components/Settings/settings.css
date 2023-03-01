@@ -1,0 +1,107 @@
+.settings-grid-container {
+    width: 95%;
+    margin: 2.5%;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 2.5fr 3fr;
+    grid-template-rows: 300px 1fr 50px;
+    grid-template-areas:
+        "user-settings account-settings"
+        "mail-settings sharing-settings"
+        "cta cta";
+    height: 80vh;
+    gap: 0.75rem;
+}
+
+.container {
+    padding: 2rem 2rem;
+    background-color: var(--bg-darkgrey);
+    border-radius: 8px;
+}
+
+.user-settings {
+    grid-area: user-settings;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: 500px;
+}
+
+.account-settings {
+    grid-area: account-settings;
+    min-width: 600px;
+}
+
+.mail-settings {
+    grid-area: mail-settings;
+}
+
+.sharing-settings {
+    grid-area: sharing-settings;
+}
+
+.cta {
+    grid-area: cta;
+}
+
+.settings-grid-container h4 {
+    margin-bottom: 1rem;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* USER SETTINGS SECTION STYLING */
+.user-image {
+    width: 200px;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.user-info {
+    line-height: 3rem;
+    margin: auto;
+}
+
+.user-info>h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+/* ACCOUNT SETTINGS SECTION STYLING */
+.settings-grid-container table {
+    width: 100%;
+    /* border: 1px solid pink; */
+    text-align: center;
+    border-spacing: 15px 25px;
+}
+
+.settings-grid-container td:first-of-type {
+    text-align: start;
+}
+
+
+/* MAIL SETTINGS SECTION STYLING */
+/* SHARING SETTINGS SECTION STYLING */
+
+/* input[type='checkbox'] {
+    margin-right: 10px;
+} */
+
+/* td {
+    padding: 5px 10px 5px 0;
+} */
+
+
+/* CALL TO ACTION SECTION STYLING */
+.cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}

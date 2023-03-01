@@ -1,0 +1,107 @@
+.jobboard-container {
+    width: 95%;
+    margin: 2.5%;
+    padding-bottom: 1rem;
+}
+
+
+/* ------------------------ */
+/* JOB BOARD HEADER STYLING */
+/* ------------------------ */
+.jobboard-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--primary-grey);
+}
+
+.jobboard-title {
+    font-size: 30px;
+    padding: 0rem 1rem;
+    font-weight: 600;
+}
+
+.jobboard-info {
+    display: inline-flex;
+    align-items: center;
+}
+
+.jobboard-icons {
+    color: var(--primary-blue);
+    font-size: 30px;
+    padding: 10px 5px 5px;
+}
+
+.jobboard-results {
+    padding: 8px 20px 8px 0px;
+    font-size: 15px;
+}
+
+
+/* ----------------------- */
+/* JOB BOARD TABLE STYLING */
+/* ----------------------- */
+.jobboard-table {
+    margin: 2rem 0rem;
+    width: 100%;
+    color: white;
+    background-color: var(--bg-darkgrey);
+    border-radius: 6px;
+    font-size: 14px;
+    border-spacing: 15px 25px;
+    text-align: center;
+}
+
+.jobboard-table th {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /* padding: 1rem 0.5rem;
+    text-align: center; */
+}
+
+.jobboard-table td:first-of-type {
+    text-align: start;
+    padding-left: 22px;
+}
+
+.jobboard-table td, .jobboard-table th {
+    max-width: 210px;
+}
+
+.jobboard-table a {
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.ToApply {
+    color: var(--primary-red);
+}
+
+.Applied {
+    color: var(--primary-yellow);
+}
+
+.Interviewing {
+    color: var(--primary-orange);
+}
+
+.Offer {
+    color: var(--primary-green);
+}
+
+.Rejected,
+.Ghosted {
+    color: var(--primary-grey);
+}
+
+.ToApply,
+.Applied,
+.Interviewing,
+.Offer,
+.Rejected,
+.Ghosted {
+    font-weight: 500;
+}

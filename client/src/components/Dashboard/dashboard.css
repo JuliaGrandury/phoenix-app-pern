@@ -1,0 +1,98 @@
+/* -------------------------- */
+/* STATISTICS SECTION STYLING */
+/* -------------------------- */
+
+.statistics-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 20px;
+    margin: 20px;
+}
+
+.statistics-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--bg-darkgrey);
+}
+
+.statistics-pg-circle {
+    color: pink;
+}
+
+
+
+/* -------------------------- */
+/* KANBAN SECTION STYLING */
+/* -------------------------- */
+
+.kanban-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    /* Force our height since we don't have actual content yet */
+    height: 150px;
+    border-radius: 8px;
+    background-color: slategray;
+    color: white;
+}
+
+/* -------------------------- */
+/* EXTRA SECTION STYLING */
+/* -------------------------- */
+
+.extra-cards {
+    column-count: 1;
+    column-gap: 20px;
+    margin: 20px;
+}
+
+.card {
+    border-radius: 8px;
+    width: 100%;
+    background-color: var(--bg-darkgrey);
+    margin-bottom: 20px;
+    padding: 24px;
+}
+
+/* Force varying heights to simulate dynamic content */
+.card:first-child {
+    height: 485px;
+}
+
+.card:nth-child(2) {
+    height: 200px;
+}
+
+.card:nth-child(3) {
+    height: 265px;
+}
+
+.extra-table {
+    margin-top: 0.5rem;
+    width: 100%;
+    border-spacing: 15px 20px;
+}
+
+.extra-name a {
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.extra-pg-circle, .extra-author,
+.extra-date {
+    color: slategray;
+}
+
+/* Medium-sized screen breakpoint (tablet, 1050px) */
+@media only screen and (min-width: 65.625em) {
+
+    /* Break out main cards into two columns */
+    .extra-cards {
+        column-count: 2;
+    }
+}
