@@ -2,38 +2,31 @@ import { FaUserCircle } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RiCloseFill } from 'react-icons/ri'
 import KanbanBoard from '../KanbanBoard'
-import ProgressCircle from '../ProgressCircle'
+import ProgressCircle from './ProgressCircle'
 import StatisticsCard from './StatisticsCard'
 import './dashboard.css'
 
 const Home = () => {
 
-    const applicationStats = {
-
-    }
-
-    const networkStats = {
-        
-    }
-
     return (
         <div className="dashboard-container">
 
+            {/* STATISTICS CARDS SECTION */}
             <div className="statistics-overview">
-                <div className="statistics-card">
-                    <StatisticsCard />
-                </div>
-                <div className="statistics-card">
-                    <StatisticsCard />
-                </div>
+                <StatisticsCard type={'applicationStatistics'} />
+                <StatisticsCard type={'networkStatistics'} />
             </div>
 
+            {/* KANBAN SECTION */}
             <div className="kanban-container">
-                <div>Kanban Board</div>
+                <h3>Kanban Board</h3>
             </div>
 
+            {/* EXTRA INFORMATION CARDS SECTION */}
             <div class="extra-cards">
-                <div class="card">Calendar Integration</div>
+                <div class="card">
+                    <h3>Calendar Integration</h3>
+                </div>
 
                 <div class="card">
                     <h3>Current Courses</h3>
@@ -41,7 +34,7 @@ const Home = () => {
                         <tbody>
                             <tr>
                                 <td className="extra-pg-circle">[PG Circle Here]</td>
-                                <td className="extra-name"><a href="https://google.com" target="_blank">Design Databases with PostgresSQL</a></td>
+                                <td className="extra-name"><a href="https://google.com" target="_blank">Design Databases with PostgreSQL</a></td>
                                 <td className="extra-author">Codecademy</td>
                                 <td className="extra-date">Started on Aug 9, 2022</td>
                             </tr>

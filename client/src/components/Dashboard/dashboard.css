@@ -11,18 +11,33 @@
 }
 
 .statistics-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
     border-radius: 8px;
     background-color: var(--bg-darkgrey);
+    padding: 30px 40px;
+}
+
+.statistics-card>h3 {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.statistics-graphics {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .statistics-pg-circle {
-    color: pink;
+    /* border: 1px solid pink; */
 }
 
+.statistics-pg-bars {
+    /* border: 1px solid green; */
+}
 
 
 /* -------------------------- */
@@ -37,8 +52,14 @@
     /* Force our height since we don't have actual content yet */
     height: 150px;
     border-radius: 8px;
-    background-color: slategray;
+    background-color: var(--bg-darkgrey);
     color: white;
+}
+
+.kanban-container>h3 {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
 /* -------------------------- */
@@ -59,17 +80,23 @@
     padding: 24px;
 }
 
+.card>h3 {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
 /* Force varying heights to simulate dynamic content */
 .card:first-child {
     height: 485px;
 }
 
 .card:nth-child(2) {
-    height: 200px;
+    height: 265px;
 }
 
 .card:nth-child(3) {
-    height: 265px;
+    height: 200px;
 }
 
 .extra-table {
@@ -83,7 +110,12 @@
     font-weight: 500;
 }
 
-.extra-pg-circle, .extra-author,
+.extra-name a:hover {
+    text-decoration: underline;
+}
+
+.extra-pg-circle,
+.extra-author,
 .extra-date {
     color: slategray;
 }
