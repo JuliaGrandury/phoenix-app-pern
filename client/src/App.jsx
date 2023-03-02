@@ -17,9 +17,9 @@ const App = () => {
           <NavBar />
           <Routes>
             <Route path='/' exact element={<Dashboard />} />
-            <Route path='/jobsdatabase' element={<JobBoard />} />
-            <Route path='/jobsdatabase/:id/update' element={<UpdateJob />} />
-            <Route path='/jobsdatabase/:id' element={<JobDetails />} />
+            <Route path='/jobboard' element={<JobBoard />} />
+            <Route path='/jobboard/:id/update' element={<UpdateJob />} />
+            <Route path='/jobboard/:id' element={<JobDetails />} />
             <Route path='/networkgraph' element={<NetworkGraph />} />
             <Route path='/settings' element={<Settings />} />
           </Routes>

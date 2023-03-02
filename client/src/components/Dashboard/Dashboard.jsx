@@ -2,8 +2,8 @@ import { FaUserCircle } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RiCloseFill } from 'react-icons/ri'
 import KanbanBoard from '../KanbanBoard'
-import ProgressCircle from './ProgressCircle'
 import StatisticsCard from './StatisticsCard'
+import kanbanboard_img from './kanbanboard.png'
 import './dashboard.css'
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
 
             {/* KANBAN SECTION */}
             <div className="kanban-container">
-                <h3>Kanban Board</h3>
+                <img src={kanbanboard_img}></img>
             </div>
 
             {/* EXTRA INFORMATION CARDS SECTION */}

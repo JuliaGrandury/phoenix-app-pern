@@ -18,7 +18,7 @@ const NavBar = () => {
         {user ? (
           <>
             <li><NavLink to='/'>Dashboard</NavLink></li>
-            <li><NavLink to='/jobsdatabase'>Job Applications</NavLink></li>
+            <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
             <li><NavLink to='/networkgraph'>Network</NavLink></li>
             <li><NavLink to='/settings'>Settings</NavLink></li>
           </>

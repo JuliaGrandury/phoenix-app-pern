@@ -4,7 +4,7 @@
 
 .statistics-overview {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     grid-auto-rows: auto;
     grid-gap: 20px;
     margin: 20px;
@@ -18,7 +18,13 @@
 
 .statistics-card>h3 {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.statistics-card h5 {
+    font-weight: 400;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
@@ -48,12 +54,16 @@
     display: flex;
     justify-content: space-between;
     margin: 20px;
-    padding: 20px;
-    /* Force our height since we don't have actual content yet */
-    height: 150px;
+    padding: 8px;
     border-radius: 8px;
     background-color: var(--bg-darkgrey);
     color: white;
+}
+
+.kanban-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .kanban-container>h3 {
@@ -82,7 +92,7 @@
 
 .card>h3 {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 1px;
 }
 
