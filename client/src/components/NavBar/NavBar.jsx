@@ -12,23 +12,25 @@ const NavBar = () => {
   // }
 
   return (
-    <div className="navbar">
-      <div className="logo">Phoenix</div>
-      <ul>
-        {user ? (
-          <>
-            <li><NavLink to='/'>Dashboard</NavLink></li>
-            <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
-            <li><NavLink to='/networkgraph'>Network</NavLink></li>
-            <li><NavLink to='/settings'>Settings</NavLink></li>
-          </>
-        ) : (
-          <>
-            <li><NavLink to='/login'>Login</NavLink></li>
-            <li><NavLink to='/register'>Register</NavLink></li>
-          </>
-        )}
-      </ul>
+    <div className="sticky-container">
+      <div className="navbar">
+        <div className="logo">Phoenix</div>
+        <ul>
+          {user ? (
+            <>
+              <li><NavLink to='/'>Dashboard</NavLink></li>
+              <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
+              <li><NavLink to='/networkgraph'>Network</NavLink></li>
+              <li><NavLink to='/settings'>Settings</NavLink></li>
+            </>
+          ) : (
+            <>
+              <li><NavLink to='/login'>Login</NavLink></li>
+              <li><NavLink to='/register'>Register</NavLink></li>
+            </>
+          )}
+        </ul>
+      </div>
     </div>
   )
 }

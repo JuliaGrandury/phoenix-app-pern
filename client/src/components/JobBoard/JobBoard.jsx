@@ -1,18 +1,26 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import './jobboard.css'
-import MOCK_DATA from '../../MOCK_DATA.json'
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import { HiOutlineDocumentAdd } from 'react-icons/hi'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice';
+
+import AddJobModal from './AddJobModal';
 
 const JobsDatabase = () => {
-  const [jobs, setJobs] = useState(MOCK_DATA);
 
-  const onAddJob = () => {
-    alert('This feature is currently in development');
+  const jobs = useSelector(selectJobs);
+  const [modalVisibility, setModalVisibility] = useState(false);
+
+  
+  const onMoreActions = () => {
+    alert("The actions are not available at the moment.")
   }
   const onAddDocument = () => {
     alert('This feature is currently in development');
   }
+
 
   return (
     <div className='jobboard-container'>
@@ -21,14 +29,22 @@ const JobsDatabase = () => {
         <h2 className='jobboard-title'>Beekeeper 2023</h2>
         <div className='jobboard-info'>
           <p className='jobboard-results'>100 results</p>
-          <i className='jobboard-icons'><IoMdAddCircleOutline onClick={onAddJob} /></i>
+          <i className='jobboard-icons'><IoMdAddCircleOutline onClick={() => { setModalVisibility(true) }} /></i>
           <i className='jobboard-icons'><HiOutlineDocumentAdd onClick={onAddDocument} /></i>
         </div>
       </header>
 
+
+      {/* Pop up with option to add by link (webscraping populates the fields) or manually input the information */}
+      {modalVisibility && (
+        <AddJobModal onCloseModal={() => setModalVisibility(false)} />
+      )}
+
+
       <table className='jobboard-table'>
         <thead>
           <tr>
+            <th></th>
             <th>Role</th>
             <th>Company</th>
             <th>Description</th>
@@ -40,6 +56,8 @@ const JobsDatabase = () => {
         <tbody>
           {jobs.map((job => (
             <tr key={job.id}>
+              {/* Pop up with Edit, Delete, Duplicate */}
+              <td><BsThreeDotsVertical style={{ color: "slategrey" }} onClick={onMoreActions} /></td>
               <td><a href={job.role_link}>{job.role}</a></td>
               <td>{job.company}</td>
               <td>{job.description}</td>

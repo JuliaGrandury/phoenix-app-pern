@@ -8,6 +8,7 @@ import JobDetails from './components/JobDetails'
 import UpdateJob from './components/UpdateJob'
 import NetworkGraph from './components/Network/NetworkGraph'
 import Settings from './components/Settings/Settings'
+import NotFound from './components/Shared/NotFound'
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
             <Route path='/jobboard' element={<JobBoard />} />
             <Route path='/jobboard/:id/update' element={<UpdateJob />} />
             <Route path='/jobboard/:id' element={<JobDetails />} />
-            <Route path='/networkgraph' element={<NetworkGraph />} />
+            <Route path='/networkgraph' element={<NotFound />} />
             <Route path='/settings' element={<Settings />} />
           </Routes>
         </>

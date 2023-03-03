@@ -23,12 +23,12 @@ const Home = () => {
             </div>
 
             {/* EXTRA INFORMATION CARDS SECTION */}
-            <div class="extra-cards">
-                <div class="card">
+            <div className="extra-cards">
+                <div className="card">
                     <h3>Calendar Integration</h3>
                 </div>
 
-                <div class="card">
+                <div className="card">
                     <h3>Current Courses</h3>
                     <table className="extra-table">
                         <tbody>
@@ -54,7 +54,7 @@ const Home = () => {
                     </table>
                 </div>
 
-                <div class="card">
+                <div className="card">
                     <h3>Current Projects</h3>
                     <table className="extra-table">
                         <tbody>
