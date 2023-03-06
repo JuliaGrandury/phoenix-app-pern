@@ -3,6 +3,7 @@
     "@reduxjs/toolkit": "^1.9.3",
     "react-bootstrap": "^2.7.2",
     "react-circular-progressbar": "^2.1.0",
-    "react-icons": "^4.7.1"
+    "react-icons": "^4.7.1",
+    "validator": "^13.9.0"
   }
 }

@@ -1,38 +1,56 @@
 import './modal.css'
 import { useState } from 'react'
 import AddJobForm from './AddJobForm'
+import ImportFile from './ImportFile'
+import LinkScraper from './LinkScraper'
 
+import { FiEdit3 } from 'react-icons/fi'
+import BsLink from 'react-icons/bs'
+import BsFiletypeCsv from 'react-icons/bs'
 
 const AddJobModal = (props) => {
 
-    const [formVisibility, setFormVisibility] = useState(false);
-
-    const notAvailable = () => {
-        alert('This feature is not available at the time');
-    }
-
-    // RECENTLY ADDED
     const { onCloseModal } = props;
+    const [activeTab, setActiveTab] = useState("form");
+
+    const titleMap = {
+        form: ['Add Job Manually', 'FiEdit3'],
+        scraper: ['Automatically Populate from URL', 'BsLink'],
+        importer: ['Import CSV File', 'BsFiletypeCsv']
+    }
 
     return (
         <div className="modal-overlay">
-            <div className="modal">
 
+            <div className="tab-container">
+                <div className={activeTab === "form" ? "active modal-tab" : "modal-tab"} onClick={() => setActiveTab('form')}>
+                    <div className='modal-tab__overline'></div>
+                    <p className='modal-tab__text'>Add Job Manually</p>
+                </div>
+                <div className={activeTab === "scraper" ? "active modal-tab" : "modal-tab"} onClick={() => setActiveTab('scraper')}>
+                    <div className='modal-tab__overline'></div>
+                    <p className='modal-tab__text'>Automatically Populate from URL</p>
+                </div>
+                <div className={activeTab === "importer" ? "active modal-tab" : "modal-tab"} onClick={() => setActiveTab('importer')}>
+                    <div className='modal-tab__overline'></div>
+                    <p className='modal-tab__text'>Import CSV File</p>
+                </div>
+            </div>
+
+            <div className="modal">
                 {/* HEADER AND CONSTANT MODAL ELEMENTS */}
                 <span className="modal-close" onClick={onCloseModal}>&#10005;</span>
-                <h3>Add Job Data</h3>
-                <div className="button-container">
-                    <button className='button-cta modal-btn' onClick={() => setFormVisibility(true)}>Add Job Manually</button>
-                    <button className='button-cta modal-btn' onClick={notAvailable}>Automatically Populate from URL</button>
-                    <button className='button-cta modal-btn' onClick={notAvailable}>Import CSV File</button>
-                </div>
+                <h3>{titleMap[activeTab][0]} {`<${titleMap[activeTab][1]}/>`} </h3>
 
                 {/* CHANGING MODAL ELEMENTS */}
-                {/* {formVisibility ? <AddJobForm /> : <></>} */}
-                {/* input field for link to webscrape along with fields that will populate to approve by user*/}
-                {/* field to upload csv file and parse */}
+                <div className="action-container">
+                    {activeTab === 'form' ? <AddJobForm /> : <></>}
+                    {activeTab === 'scraper' ? <LinkScraper /> : <></>}
+                    {activeTab === 'importer' ? <ImportFile /> : <></>}
+                </div>
             </div>
         </div>
+
     )
 }
 

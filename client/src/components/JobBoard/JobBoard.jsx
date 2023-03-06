@@ -1,19 +1,19 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 import './jobboard.css'
 import { IoMdAddCircleOutline } from 'react-icons/io'
-import { HiOutlineDocumentAdd } from 'react-icons/hi'
+import { TbFileExport } from 'react-icons/tb'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice';
+import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
 
-import AddJobModal from './AddJobModal';
+import AddJobModal from './AddJobModal'
 
 const JobsDatabase = () => {
 
   const jobs = useSelector(selectJobs);
   const [modalVisibility, setModalVisibility] = useState(false);
 
-  
+
   const onMoreActions = () => {
     alert("The actions are not available at the moment.")
   }
@@ -30,7 +30,7 @@ const JobsDatabase = () => {
         <div className='jobboard-info'>
           <p className='jobboard-results'>100 results</p>
           <i className='jobboard-icons'><IoMdAddCircleOutline onClick={() => { setModalVisibility(true) }} /></i>
-          <i className='jobboard-icons'><HiOutlineDocumentAdd onClick={onAddDocument} /></i>
+          <i className='jobboard-icons'><TbFileExport onClick={onAddDocument} /></i>
         </div>
       </header>
 
