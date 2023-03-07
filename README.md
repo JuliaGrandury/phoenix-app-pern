@@ -16,6 +16,7 @@
 
 ## About The Project & Demo
 [Deployed on Netlify (front-end) & [insert here] (back-end)]()
+<br/>
 https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-b174-2096b57f1fbe.mov
 <br/>
 **TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
@@ -55,6 +56,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 Julia Grandury - booleanjules@gmail.com
+
 Project Link: [https://github.com/JuliaGrandury/phoenix-app-pern](https://github.com/JuliaGrandury/phoenix-app-pern)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
