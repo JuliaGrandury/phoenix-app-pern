@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +21,7 @@
     padding: 30px 30px;
     position: relative;
     width: 50%;
-    height: 50%;
+    height: fit-content;
 }
 
 .modal-close {
@@ -35,11 +35,11 @@
 .modal>h3 {
     text-align: center;
     margin-bottom: 1rem;
+    letter-spacing: 0.8px;
 }
 
 .action-container {
-    margin: auto;
-    border: 1px solid pink;
+    margin: 15px auto;
     text-align: center;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .modal-tab__text {
-    padding: 7px 15px;
+    padding: 8px 25px;
 }
 
 
@@ -88,21 +88,145 @@
 /* JOB BOARD FORM STYLING */
 /* ----------------------- */
 .form-container {
-    border: 1px solid red;
-    padding: 10px 0px;
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* gap: 20px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "role role_link role_link"
+        "company connections workstyle"
+        "description description description"
+        "city state country"
+        "status applied_on save-job";
+    gap: 10px;
 }
 
-.form-container input {
-    padding: 3px 5px;
-    margin-right: 5px;
+.role {
+    grid-area: role;
+}
+
+.role_link {
+    grid-area: role_link;
+}
+
+.company {
+    grid-area: company;
+}
+
+.connections {
+    grid-area: connections;
+}
+
+.workstyle {
+    grid-area: workstyle;
+}
+
+.description {
+    grid-area: description;
+}
+
+.city {
+    grid-area: city;
+}
+
+.state {
+    grid-area: state;
+}
+
+.country {
+    grid-area: country;
+}
+
+.status {
+    grid-area: status;
+}
+
+.applied_on {
+    grid-area: applied_on;
+}
+
+.save-job {
+    grid-area: save-job;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+input,
+textarea,
+select {
+    margin: 2px 3px;
+    padding: 8px 5px;
     border-radius: 5px;
-    width: 200px;
-    border: 0.7px solid var(--primary-blue);
+    border: 1.2px solid var(--primary-blue);
+    resize: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    background-color: var(--bg-lightgrey);
+    color: white;
 }
 
-input::placeholder {
-    /* color: black; */
+input[type="date"]::-webkit-datetime-edit {
+    color: slategray;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: slategray;
+    border-radius: 7px;
+}
+
+.form-container select:invalid,
+.form-container input::placeholder {
+    color: slategray;
+}
+
+
+/* ----------------------- */
+/* JOB BOARD SCRAPER STYLING */
+/* ----------------------- */
+.scraper-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.scraper-actions {
+    height: 30px;
+}
+
+.scraper-content input {
+    width: 60%;
+}
+
+.scraper-content button {
+    margin-left: 8px;
+    height: 100%;
+}
+
+.error,
+.okay {
+    margin: 6px;
+    font-weight: 600;
+}
+
+.error {
+    color: var(--primary-red);
+}
+
+.okay {
+    color: var(--primary-green);
+}
+
+.scraper-container input,
+.scraper-container textarea,
+.scraper-container select, .scraper-container button {
+    border: 1.2px solid var(--primary-grey);
+    color: slategray;
+}
+
+.scraper-content input, .scraper-content button {
+    border: 1.2px solid var(--primary-blue);
+    color: var(--primary-blue);
 }

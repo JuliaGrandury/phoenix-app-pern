@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import validator from 'validator'
-
+import AddJobForm from './AddJobForm'
 
 const LinkScraper = () => {
     const [errorMessage, setErrorMessage] = useState('')
-
+    const [isError, setIsError] = useState(false)
 
     // HELPER FUNCTION TO VALIDATE URLS
     const validate = (value) => {
         if (validator.isURL(value)) {
-            setErrorMessage('Is Valid URL')
+            setErrorMessage('THANK YOU! This is a Valid URL')
+            setIsError(false)
         } else {
-            setErrorMessage('Is Not Valid URL')
+            setErrorMessage('WARNING! This is Not a Valid URL')
+            setIsError(true)
         }
     }
 
@@ -19,13 +21,15 @@ const LinkScraper = () => {
     // Linkedin Jobs "linkedin.com/jobs"
 
     return (
-        <div>
-            <h3>Enter URL: </h3><input type="text"
-                onChange={(e) => validate(e.target.value)}></input>
-            <span style={{
-                fontWeight: 'bold',
-                color: 'red',
-            }}>{errorMessage}</span>
+        <div className='scraper-container'>
+            <div className='scraper-content'>
+                <div className='scraper-actions'>
+                    <input type="text" placeholder="Enter Job Post URL" onChange={(e) => validate(e.target.value)}></input>
+                    <button className='small-btn button-cta'>Automatically Populate</button>
+                </div>
+                <span className={isError ? 'error' : 'okay'}>{errorMessage}</span>
+            </div>
+            <AddJobForm className="remove-blue"/>
         </div>
     )
 }
