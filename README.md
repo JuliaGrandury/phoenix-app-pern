@@ -1,9 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-
   <h3 align="center">Phoenix</h3>
-
   <p align="center">
     An app here to help you stay on top of your job search and never miss another opportunity!
     <br />
@@ -16,42 +14,22 @@
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-<!-- ABOUT THE PROJECT -->
 ## Demo
 [Deployed on Netlify (front-end) & [insert here] (back-end)]()
 
+------------------
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-b174-2096b57f1fbe.mov
 
+<br/><br/>
 
 **TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
 - Allowing job seekers to give mentors, parents or accountability buddies access to their progress
 - Weekly summary emails to the job seeker and their supporters
 - Notifications when a new job is created, a job status is updated or a job posting is closed
 - And more in development
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
