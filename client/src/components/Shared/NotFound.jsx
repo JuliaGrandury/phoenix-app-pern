@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const NotFound = () => {
     const poem = [`The page you seek, alas, is gone,`,
@@ -19,9 +20,12 @@ const NotFound = () => {
         `But it's also a chance to write a new verse.`];
 
     const containerStyle = {
-        width: '80%',
-        margin: 'auto',
+        width: '30%',
+        padding: '4px 10px',
+        margin: '50px auto',
+        borderRadius: '8px',
         textAlign: 'center',
+        backgroundColor: '#1D1D1D'
     }
 
     const headerStyle = {
@@ -29,19 +33,24 @@ const NotFound = () => {
         color: 'white',
     }
 
-    const buttonStyle = {
+    const navLinkStyle = {
         color: 'white',
         border: '1px solid white',
         padding: '10px 10px',
         margin: '3rem',
-        backgroundColor: '#111111'
+        borderRadius: '8px',
+        backgroundColor: '#111111',
+    }
+
+    const lineStyle = {
+        margin: '8px',
     }
 
     return (
         <div style={containerStyle}>
             <h3 style={headerStyle}>Okay, Don't Panic.</h3>
-            {poem.map((line) => <p>{line}</p>)}
-            <button style={buttonStyle}>This way home</button>
+            {poem.map((line) => <p style={lineStyle}>{line}</p>)}
+            <button style={navLinkStyle}><NavLink to='/' style={{ color: '#fff' }}>This way home</NavLink></button>
         </div>
     )
 }

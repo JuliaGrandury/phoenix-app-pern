@@ -1,19 +1,30 @@
+import { useRef, useState } from 'react'
 
 const ImportFile = () => {
 
-    const inputStyles = {
-        borderRadius: '8px',
-        fontFamily: 'Inter, sans-serif',
+    const [file, setFile] = useState();
+    const fileReader = new FileReader();
+
+    const handleOnChange = e => {
+        setFile(e.target.files[0])
     }
 
-    const buttonStyles = {
-        
+    const handleOnSubmit = e => {
+        e.preventDefault();
+        if (file) {
+            fileReader.onload = function (event) {
+                const csvOutput = event.target.result;
+            };
+            fileReader.readAsText(file);
+            console.log(file);
+        }
     }
 
     return (
-        <form>
-            <input style={inputStyles} type={"file"} accept={".csv"} />
-            <button style={buttonStyles} className="small-btn button-cta">Import CSV</button>
+        <form className="importer-container">
+            <input type={"file"} accept={".csv"} id={"csvFileInput"} onChange={handleOnChange} />
+            {/* <button className='small-btn button-cta' onClick={() => fileInput.current.click()}>Choose File</button> */}
+            <button className='small-btn button-cta' onClick={(e) => { handleOnSubmit(e) }}>Submit CSV</button>
         </form>
     )
 }

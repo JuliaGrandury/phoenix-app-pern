@@ -5,6 +5,7 @@ const AddJobForm = ({ alljobs }) => {
 
     // editing form to add a new job
     const handleAddJobFormChange = () => {
+        
     }
     // submitting form to add a new job
     const handleAddJobSubmit = () => {

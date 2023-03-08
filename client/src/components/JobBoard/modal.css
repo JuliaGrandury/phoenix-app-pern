@@ -34,7 +34,7 @@
 
 .modal>h3 {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.8px;
 }
 
@@ -83,20 +83,20 @@
 }
 
 
-
 /* ----------------------- */
 /* JOB BOARD FORM STYLING */
 /* ----------------------- */
 .form-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr) 35px;
     grid-template-areas:
         "role role_link role_link"
         "company connections workstyle"
         "description description description"
         "city state country"
-        "status applied_on save-job";
+        "status status applied_on"
+        "save-job save-job save-job";
     gap: 10px;
 }
 
@@ -146,7 +146,7 @@
 
 .save-job {
     grid-area: save-job;
-    width: 100%;
+    width: 20%;
     height: 100%;
     margin: auto;
 }
@@ -189,7 +189,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     gap: 10px;
     height: 100px;
-    margin: 20px auto;
+    margin: 10px auto 0;
 }
 
 .scraper-actions {
@@ -221,12 +221,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .scraper-container input,
 .scraper-container textarea,
-.scraper-container select, .scraper-container button {
+.scraper-container select,
+.scraper-container button {
     border: 1.2px solid var(--primary-grey);
     color: slategray;
 }
 
-.scraper-content input, .scraper-content button {
+.scraper-content input,
+.scraper-content button {
     border: 1.2px solid var(--primary-blue);
     color: var(--primary-blue);
+}
+
+
+/* ----------------------- */
+/* JOB BOARD IMPORTER STYLING */
+/* ----------------------- */
+.importer-container input {
+    border: none;
+    font-family: 'Inter', sans-serif;
 }

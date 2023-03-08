@@ -1,24 +1,38 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import './jobboard.css'
+
+//import React Icons
 import { IoMdAddCircleOutline } from 'react-icons/io'
+import { HiOutlineDuplicate } from 'react-icons/hi'
 import { TbFileExport } from 'react-icons/tb'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
+import { AiOutlineDelete } from 'react-icons/ai'
+import { FiEdit3 } from 'react-icons/fi'
 
+
+import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
 import AddJobModal from './AddJobModal'
 
 const JobsDatabase = () => {
 
   const jobs = useSelector(selectJobs);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
 
-
-  const onMoreActions = () => {
-    alert("The actions are not available at the moment.")
-  }
   const onAddDocument = () => {
     alert('This feature is currently in development');
+  }
+
+  // Close dropdown and modal if user clicks outside of them
+  const handleClickOutside = () => {
+    setOpenDropdown(null);
+    setModalVisibility(false);
+  }
+  // document.addEventListener('mousedown', handleClickOutside)
+
+  const handleEditJob = (id) => {
+    console.log(`Editing job wiht id ${id}`)
   }
 
 
@@ -34,12 +48,10 @@ const JobsDatabase = () => {
         </div>
       </header>
 
-
-      {/* Pop up with option to add by link (webscraping populates the fields) or manually input the information */}
+      {/* IMPORTING/EXPORTING JOB DATA ACTIONS */}
       {modalVisibility && (
         <AddJobModal onCloseModal={() => setModalVisibility(false)} />
       )}
-
 
       <table className='jobboard-table'>
         <thead>
@@ -57,7 +69,20 @@ const JobsDatabase = () => {
           {jobs.map((job => (
             <tr key={job.id}>
               {/* Pop up with Edit, Delete, Duplicate */}
-              <td><BsThreeDotsVertical style={{ color: "slategrey" }} onClick={onMoreActions} /></td>
+              <td>
+                <div className="actions-dropdown">
+                  <BsThreeDotsVertical style={openDropdown === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setOpenDropdown(job.id)} />
+                  <Fragment>
+                    {openDropdown === job.id ? (
+                      <ul className="dropdown-content">
+                        <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
+                        <li><AiOutlineDelete /> Delete</li>
+                        <li><HiOutlineDuplicate /> Duplicate</li>
+                      </ul>
+                    ) : <></>}
+                  </Fragment>
+                </div>
+              </td>
               <td><a href={job.role_link}>{job.role}</a></td>
               <td>{job.company}</td>
               <td>{job.description}</td>
