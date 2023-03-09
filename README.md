@@ -16,7 +16,7 @@
 
 ## About The Project & Demo
 
-[Deployed on Netlify (front-end) & [insert here] (back-end)]()
+[In the process of being deployed and hosted on AWS Amplify]()
 
 <br/>
 
@@ -25,10 +25,14 @@ https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-
 <br/>
 
 **TLDR**; Phoenix allows users to keep track of their current job applications, networking progress and job search statistics all in one with summary emails every week and daily job progress statistics. Features include:
-- Allowing job seekers to give mentors, parents or accountability buddies access to their progress
-- Weekly summary emails to the job seeker and their supporters
-- Notifications when a new job is created, a job status is updated or a job posting is closed
-- And more in development
+- Allowing job seekers to give mentors, parents, accountability buddies - called "believers" - access to their progress by choosing which pages they have access to
+- Editable kanban board of the week's tasks by both the user and selected "believers"
+- Weekly summary emails to the job seeker and selected "believers"
+- Notifications when a job is created, a job status is updated or a job posting is closed
+- Leaderboards of the most involved job seekers based on application and networking ratios
+- Increasingly better job suggestions
+- Import and export of the data through CSV files
+- And more in development...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
