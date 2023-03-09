@@ -10,29 +10,35 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { FiEdit3 } from 'react-icons/fi'
 
-
 import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
 import AddJobModal from './AddJobModal'
+import DangerModal from '../Shared/DangerModal'
 
 const JobsDatabase = () => {
 
   const jobs = useSelector(selectJobs);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [openPopUp, setOpenPopUp] = useState(false);
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
   }
 
-  // Close dropdown and modal if user clicks outside of them
-  const handleClickOutside = () => {
-    setOpenDropdown(null);
-    setModalVisibility(false);
-  }
-  // document.addEventListener('mousedown', handleClickOutside)
+  // Close dropdown if user clicks outside of it
+  // document.addEventListener('mousedown', (() => setOpenDropdown(null)))
 
   const handleEditJob = (id) => {
-    console.log(`Editing job wiht id ${id}`)
+    console.log(`Editing job with id ${id}`)
+  }
+
+  const handleDeleteJob = (id) => {
+    setOpenPopUp(true);
+    console.log(`Deleting job with id ${id}`)
+  }
+
+  const handleDuplicateJob = (id) => {
+    console.log(`Duplicating job with id ${id}`)
   }
 
 
@@ -51,6 +57,10 @@ const JobsDatabase = () => {
       {/* IMPORTING/EXPORTING JOB DATA ACTIONS */}
       {modalVisibility && (
         <AddJobModal onCloseModal={() => setModalVisibility(false)} />
+      )}
+
+      {openPopUp && (
+        <DangerModal onClosePopUp={() => setOpenPopUp(false)}/>
       )}
 
       <table className='jobboard-table'>
@@ -76,8 +86,8 @@ const JobsDatabase = () => {
                     {openDropdown === job.id ? (
                       <ul className="dropdown-content">
                         <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
-                        <li><AiOutlineDelete /> Delete</li>
-                        <li><HiOutlineDuplicate /> Duplicate</li>
+                        <li onClick={() => handleDeleteJob(job.id)}><AiOutlineDelete /> Delete</li>
+                        <li onClick={() => handleDuplicateJob(job.id)}><HiOutlineDuplicate /> Duplicate</li>
                       </ul>
                     ) : <></>}
                   </Fragment>

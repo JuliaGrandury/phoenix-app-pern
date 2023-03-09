@@ -40,7 +40,7 @@ const AddJobModal = (props) => {
             <div className="modal">
                 {/* HEADER AND CONSTANT MODAL ELEMENTS */}
                 <span className="modal-close" onClick={onCloseModal}>&#10005;</span>
-                {window.innerWidth <= 480 ? <h3>{titleMap[activeTab][1]}</h3> :  <h3>{titleMap[activeTab][0]}</h3>}
+                {window.innerWidth <= 480 ? <h3>{titleMap[activeTab][1]}</h3> : <h3>{titleMap[activeTab][0]}</h3>}
 
                 {/* CHANGING MODAL ELEMENTS */}
                 <div className="action-container">
