@@ -34,6 +34,8 @@ https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-
 - Import and export of the data through CSV files
 - And more in development...
 
+<a>Design document</a> coming soon for more details on the product.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
