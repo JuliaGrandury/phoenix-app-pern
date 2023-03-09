@@ -49,7 +49,7 @@ const NotFound = () => {
     return (
         <div style={containerStyle}>
             <h3 style={headerStyle}>Okay, Don't Panic.</h3>
-            {poem.map((line) => <p style={lineStyle}>{line}</p>)}
+            {poem.map((line, index) => <p style={lineStyle} key={index}>{line}</p>)}
             <button style={navLinkStyle}><NavLink to='/' style={{ color: '#fff' }}>This way home</NavLink></button>
         </div>
     )
