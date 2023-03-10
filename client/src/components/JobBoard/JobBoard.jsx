@@ -1,5 +1,5 @@
 import { useState, Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './jobboard.css'
 
 //import React Icons
@@ -10,16 +10,24 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { FiEdit3 } from 'react-icons/fi'
 
-import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
+//import Other Components
 import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
 
+//import redux actions and selectors
+import { selectJobs } from '../../redux/slices/job/jobsSlice'
+import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
+import { createJob } from '../../redux/slices/job/jobsThunk'
+
 const JobsDatabase = () => {
 
+  const jobSearch = useSelector(selectJobSearch);
   const jobs = useSelector(selectJobs);
+  const dispatch = useDispatch();
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [openPopUp, setOpenPopUp] = useState(false);
+  const [openPopUp, setOpenPopUp] = useState(null);
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
@@ -30,15 +38,16 @@ const JobsDatabase = () => {
 
   const handleEditJob = (id) => {
     console.log(`Editing job with id ${id}`)
+    // dispatch(updateJob({job data here}))
   }
 
   const handleDeleteJob = (id) => {
-    setOpenPopUp(true);
-    console.log(`Deleting job with id ${id}`)
+    setOpenPopUp(id);
   }
 
   const handleDuplicateJob = (id) => {
     console.log(`Duplicating job with id ${id}`)
+    // dispatch(duplicateJob(id));
   }
 
 
@@ -46,9 +55,9 @@ const JobsDatabase = () => {
     <div className='jobboard-container'>
 
       <header className='jobboard-header'>
-        <h2 className='jobboard-title'>Beekeeper 2023</h2>
+        <h2 className='jobboard-title'>{jobSearch[0].name}</h2>
         <div className='jobboard-info'>
-          <p className='jobboard-results'>100 results</p>
+          <p className='jobboard-results'>{`${jobs.length} results`}</p>
           <i className='jobboard-icons'><IoMdAddCircleOutline onClick={() => { setModalVisibility(true) }} /></i>
           <i className='jobboard-icons'><TbFileExport onClick={onAddDocument} /></i>
         </div>
@@ -60,7 +69,7 @@ const JobsDatabase = () => {
       )}
 
       {openPopUp && (
-        <DangerModal onClosePopUp={() => setOpenPopUp(false)}/>
+        <DangerModal onClosePopUp={() => setOpenPopUp(null)} toDelete={openPopUp} />
       )}
 
       <table className='jobboard-table'>
