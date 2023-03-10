@@ -5,7 +5,7 @@ import { createJob, getAJob, getAllJobs, updateJob } from './jobsThunk'
 const options = {
   name: "jobs",
   initialState: {
-    jobs: MOCK_DATA,
+    jobs: [],
     isLoadingJobs: false,
     failedToLoadJobs: false,
     createJobIsPending: false,

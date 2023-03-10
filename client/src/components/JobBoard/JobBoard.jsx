@@ -14,10 +14,10 @@ import { FiEdit3 } from 'react-icons/fi'
 import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
 
-//import redux actions and selectors
+//import Redux Actions and Selectors
 import { selectJobs } from '../../redux/slices/job/jobsSlice'
 import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
-import { createJob } from '../../redux/slices/job/jobsThunk'
+import { createJob, getAllJobs } from '../../redux/slices/job/jobsThunk'
 
 const JobsDatabase = () => {
 

@@ -5,12 +5,11 @@ const db = require("./db")
 const morgan = require("morgan")
 const app = express()
 
-const MOCK_DATA = require('../client/src/MOCK_DATA.json');
+//const MOCK_DATA = require('../client/src/MOCK_DATA.json');
 
 
 // middleware
 app.use(express.json())
-
 
 
 // routes - create a job
@@ -31,28 +30,32 @@ app.post("/api/v1/jobs", async (req, res) => {
     }
 })
 
+// routes - get all jobs FROM MOCK DATA JSON FILE
+// app.get("/api/v1/jobs", (req, res) => {
+//     const results = MOCK_DATA;
+//     res.status(200).json({
+//         status: "success",
+//         results: results.length,
+//         data: {
+//             jobs: results
+//         }
+//     })
+// })
+
 // routes - get all jobs
-app.get("/api/v1/jobs", (req, res) => {
-    const results = MOCK_DATA;
-    res.status(200).json({
-        status: "success",
-        results: results.length,
-        data: {
-            jobs: results
-        }
-    })
-    // try {
-    //     const results = await db.query("SELECT * FROM jobs")
-    //     res.status(200).json({
-    //         status: "success",
-    //         results: results.rows.length,
-    //         data: {
-    //             jobs: results.rows
-    //         }
-    //     })
-    // } catch (err) {
-    //     console.log(err)
-    // }
+app.get("/api/v1/jobs", async (req, res) => {
+    try {
+        const results = await db.query("SELECT * FROM jobs")
+        res.status(200).json({
+            status: "success",
+            results: results.rows.length,
+            data: {
+                jobs: results.rows
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 // BYE JULIAAAAAAA 👋
