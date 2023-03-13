@@ -22,15 +22,15 @@ export const getAJob = createAsyncThunk('jobs/getjob', async (id) => {
 
 
 // GET ALL JOBS
-export const getAllJobs = createAsyncThunk('jobs/getall', async () => {
+export const getAllJobs = createAsyncThunk('jobs/getalljobs', async () => {
     const res = await fetch(`${config.apiUrl}/api/v1/jobs`);
     const alljobs = await res.json();
-    return alljobs;
+    return alljobs.data.jobs;
 })
 
 
 // UPDATE A JOB
-export const updateJob = createAsyncThunk(('jobs/update', async (id, data) => {
+export const updateJob = createAsyncThunk(('jobs/updatejob', async (id, data) => {
     const requestBody = JSON.stringify({ job: data })
     const res = await fetch(`${config.apiUrl}/api/v1/jobs/${id}`, {
         method: "POST",
@@ -42,6 +42,6 @@ export const updateJob = createAsyncThunk(('jobs/update', async (id, data) => {
 
 
 // DELETE A JOB
-// export const deleteJob = createAsyncThunk(('jobs/delete', async (id) => {
+// export const deleteJob = createAsyncThunk(('jobs/deletejob', async (id) => {
     
 // }))

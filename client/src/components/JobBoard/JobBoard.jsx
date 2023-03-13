@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './jobboard.css'
 
@@ -49,6 +49,10 @@ const JobsDatabase = () => {
     console.log(`Duplicating job with id ${id}`)
     // dispatch(duplicateJob(id));
   }
+
+  useEffect(() => {
+    dispatch(getAllJobs());
+  }, [dispatch]);
 
 
   return (

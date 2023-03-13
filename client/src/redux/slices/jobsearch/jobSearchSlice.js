@@ -5,15 +5,18 @@ const options = {
     initialState: {
         jobSearch: [{
             id: 1,
-            name: 'Software Engineer in Blue Tech'
+            name: 'Software Engineer in Blue Tech',
+            startdate: '12/08/2022',
+            jobsIds: [],
         }],
     },
     reducers: {
         addJobSearch: (state, action) => {
-            const { jobSearchId, name, jobIds } = action.payload;
+            const { jobSearchId, name, startdate, jobIds } = action.payload;
             state.jobSearch[jobSearchId] = {
                 id: jobSearchId,
                 name: name,
+                startdate: startdate,
                 jobIds: jobIds,
             };
         },

@@ -14,6 +14,19 @@ const options = {
   //extra reducers here
   extraReducers: (builder) => {
     builder
+      .addCase(getAllJobs.pending, (state) => {
+        state.isLoadingJobs = true;
+        state.failedToLoadJobs = false;
+      })
+      .addCase(getAllJobs.fulfilled, (state, action) => {
+        state.isLoadingJobs = false;
+        state.failedToLoadJobs = false;
+        state.jobs = action.payload;
+      })
+      .addCase(getAllJobs.rejected, (state) => {
+        state.isLoadingJobs = false;
+        state.failedToLoadJobs = true;
+      })
       .addCase(createJob.pending, (state) => {
         state.createJobIsPending = true;
         state.failedToCreateJob = false;

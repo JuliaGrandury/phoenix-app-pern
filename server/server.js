@@ -4,12 +4,13 @@ const express = require("express")
 const db = require("./db")
 const morgan = require("morgan")
 const app = express()
+const cors = require("cors")
 
 //const MOCK_DATA = require('../client/src/MOCK_DATA.json');
 
-
 // middleware
 app.use(express.json())
+app.use(cors())
 
 
 // routes - create a job
@@ -46,6 +47,7 @@ app.post("/api/v1/jobs", async (req, res) => {
 app.get("/api/v1/jobs", async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM jobs")
+        console.log(results.rows[0])
         res.status(200).json({
             status: "success",
             results: results.rows.length,
