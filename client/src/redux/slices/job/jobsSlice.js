@@ -1,59 +1,79 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import MOCK_DATA from '../../../MOCK_DATA.json';
-import { createJob, getAJob, getAllJobs, updateJob } from './jobsThunk'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { config } from '../../../config.js'
 
-const options = {
+
+// FETCH JOBS
+export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
+  const res = await fetch(`${config.apiUrl}/api/v1/jobs`);
+  const alljobs = await res.json();
+  return alljobs.data.jobs;
+})
+
+// CREATE A JOB
+export const addJob = createAsyncThunk('jobs/addJob', async (newJob, { rejectWithValue }) => {
+  try {
+    const res = await fetch(`${config.apiUrl}/api/v1/jobs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newJob)
+    })
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    return rejectWithValue(err.response.data);
+  }
+})
+
+const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     jobs: [],
     isLoadingJobs: false,
-    failedToLoadJobs: false,
-    createJobIsPending: false,
-    failedToCreateJob: false
+    hasError: false,
+  },
+  //reducers here
+  reducers: {
+    // addJob: (state, action) => {
+    //   state.jobs.push(action.payload);
+    // },
+    deleteJob: (state, action) => {
+      state.jobs.filter((job) => job.id !== action.payload.id);
+    },
+    updateJob: (state, action) => {
+      // 
+    }
   },
   //extra reducers here
   extraReducers: (builder) => {
     builder
-      .addCase(getAllJobs.pending, (state) => {
+      .addCase(fetchJobs.pending, (state) => {
         state.isLoadingJobs = true;
-        state.failedToLoadJobs = false;
+        state.hasError = false;
       })
-      .addCase(getAllJobs.fulfilled, (state, action) => {
+      .addCase(fetchJobs.fulfilled, (state, action) => {
         state.isLoadingJobs = false;
-        state.failedToLoadJobs = false;
+        state.hasError = false;
         state.jobs = action.payload;
       })
-      .addCase(getAllJobs.rejected, (state) => {
+      .addCase(fetchJobs.rejected, (state) => {
         state.isLoadingJobs = false;
-        state.failedToLoadJobs = true;
+        state.hasError = true;
       })
-      .addCase(createJob.pending, (state) => {
-        state.createJobIsPending = true;
-        state.failedToCreateJob = false;
-      })
-      .addCase(createJob.fulfilled, (state, action) => {
-        state.createJobIsPending = false;
-        state.failedToCreateJob = false;
-        state.jobs.push(action.payload);
-      })
-      .addCase(createJob.rejected, (state) => {
-        state.createJobIsPending = false;
-        state.failedToCreateJob = true;
+      .addCase(addJob.fulfilled, (state, action) => {
+        state.jobs.push(action.payload)
       })
   }
-};
+});
 
-// .addCase(updateJob.fulfilled, (state) => {
-//   state.jobs[action.payload.jobId] = action.payload
-// })
-
-export const jobsSlice = createSlice(options);
+//actions
+export const { deleteJob } = jobsSlice.actions;
 
 //selector
 export const selectJobs = (state) => state.jobs.jobs;
-export const createJobIsPending = (state) => state.jobs.createJobIsPending;
 export const isLoadingJobs = (state) => state.jobs.isLoadingJobs;
+export const hasError = (state) => state.jobs.hasError;
 
-// actions + reducer
-export const { addJob, deleteJob, duplicateJob } = jobsSlice.actions;
+//reducer
 export default jobsSlice.reducer;

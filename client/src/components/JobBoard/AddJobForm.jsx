@@ -1,22 +1,47 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { stateAbbrList } from '../../utils/stateAbbr'
+import { addJob } from '../../redux/slices/job/jobsSlice'
 
-const AddJobForm = ({ alljobs }) => {
+
+const AddJobForm = () => {
+
+    const dispatch = useDispatch();
+    const [formData, setFormData] = useState({
+        id: '',
+        role: '',
+        role_link: '',
+        city: '',
+        state_abbr: '',
+        country: '',
+        workstyle: '',
+        company: '',
+        description: '',
+        connections: [],
+        app_status: '',
+        applied_on: '',
+        priority: '0',
+        created_at: '',
+    });
 
     // editing form to add a new job
-    const handleAddJobFormChange = () => {
-        
-    }
-    // submitting form to add a new job
-    const handleAddJobSubmit = () => {
+    const handleAddJobFormChange = (event) => {
+        event.preventDefault();
+        const editedField = event.target.getAttribute("name");
+        const editedValue = event.target.value;
+        const newJob = { ...formData };
+        newJob[editedField] = editedValue;
+        setFormData(newJob);
     }
 
-    const addJob = () => {
-        alert('job was added')
+    // submitting form to add a new job
+    const handleCreateJob = (event) => {
+        event.preventDefault();
+        dispatch(addJob(formData));
     }
 
     return (
-        <form className='form-container' onSubmit={handleAddJobSubmit}>
+        <form className='form-container' onSubmit={handleCreateJob}>
 
             <input className="role" type='text' name='role' placeholder='Role *' onChange={handleAddJobFormChange} />
             <input className="role_link" type='text' name='role_link' placeholder='Role Link' onChange={handleAddJobFormChange} />
@@ -35,13 +60,13 @@ const AddJobForm = ({ alljobs }) => {
             <input className="city" type='text' name='city' placeholder='City' onChange={handleAddJobFormChange} />
             <select className="state" name='state_abbr' required='required' onChange={handleAddJobFormChange}>
                 <option value="" disabled selected hidden>State</option>
-                {stateAbbrList.map((abbr) => (
-                    <option key={abbr.value} value={abbr.value}>{abbr.label}</option>
+                {stateAbbrList.map((state_abbr) => (
+                    <option key={state_abbr.value} value={state_abbr.value}>{state_abbr.label}</option>
                 ))}
             </select>
             <input className="country" type='text' name='country' placeholder='Country' onChange={handleAddJobFormChange} />
 
-            <select className="status" name='status' required='required' onChange={handleAddJobFormChange}>
+            <select className="status" name='app_status' required='required' onChange={handleAddJobFormChange}>
                 <option value="" disabled selected hidden>Application Status *</option>
                 <option value="To Apply">To Apply</option>
                 <option value="Applied">Applied</option>
@@ -52,7 +77,7 @@ const AddJobForm = ({ alljobs }) => {
             </select>
             <input className="applied_on" type="date" name="applied_on" placeholder="Applied On" onChange={handleAddJobFormChange} />
 
-            <button className='small-btn button-cta save-job' type='submit' onClick={addJob}>Save Job</button>
+            <button className='small-btn button-cta save-job' type='submit'>Save Job</button>
         </form>
     )
 }

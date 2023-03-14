@@ -6,8 +6,6 @@ const morgan = require("morgan")
 const app = express()
 const cors = require("cors")
 
-//const MOCK_DATA = require('../client/src/MOCK_DATA.json');
-
 // middleware
 app.use(express.json())
 app.use(cors())
@@ -26,28 +24,16 @@ app.post("/api/v1/jobs", async (req, res) => {
             }
         })
     } catch (err) {
-
-        console.log(err.message)
+        console.error(err.message)
+        res.status(500).send('Server Error')
     }
 })
 
-// routes - get all jobs FROM MOCK DATA JSON FILE
-// app.get("/api/v1/jobs", (req, res) => {
-//     const results = MOCK_DATA;
-//     res.status(200).json({
-//         status: "success",
-//         results: results.length,
-//         data: {
-//             jobs: results
-//         }
-//     })
-// })
 
 // routes - get all jobs
 app.get("/api/v1/jobs", async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM jobs")
-        console.log(results.rows[0])
         res.status(200).json({
             status: "success",
             results: results.rows.length,
@@ -56,16 +42,18 @@ app.get("/api/v1/jobs", async (req, res) => {
             }
         })
     } catch (err) {
-        console.log(err)
+        console.error(err.message)
+        res.status(500).send('Server Error')
     }
 })
+
 
 // BYE JULIAAAAAAA 👋
 // Good luck!
 
 
 // routes - get a job
-app.get("/api/v1/jobs/:id", async (req, res, next) => {
+app.get("/api/v1/jobs/:id", async (req, res) => {
     let results;
     try {
         results = await db.query("SELECT * FROM jobs WHERE id=$1", [req.params.id])
@@ -78,7 +66,6 @@ app.get("/api/v1/jobs/:id", async (req, res, next) => {
         res.status(404).json({
             status: "failure"
         })
-        return
     }
 
     res.status(200).json({
@@ -96,15 +83,15 @@ app.put("/api/v1/jobs/:id", async (req, res) => {
     try {
         const results = await db.query(`UPDATE jobs SET role=$1, role_link=$2, city=$3, state_abbr=$4, country=$5, workstyle=$6, company=$7, description=$8, connections=$9, app_status=$10, applied_on=$11, priority=$12 
         WHERE id=$13 RETURNING *`, [role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority, id])
-        console.log(results)
         res.status(200).json({
             status: "success",
             data: {
-                jobs: results.rows
+                jobs: results.rows[0]
             }
         })
     } catch (err) {
-        console.log(err)
+        console.error(err.message)
+        res.status(500).send('Server Error')
     }
 })
 
@@ -114,13 +101,14 @@ app.delete("/api/v1/jobs/:id", async (req, res) => {
     try {
         const results = await db.query("DELETE FROM jobs WHERE id=$1 ", [id])
         res.status(204).json({
-            status: "success"
+            status: "success",
+            message: "Job was deleted from board"
         })
     } catch (err) {
-        console.log(err)
+        console.error(err.message)
+        res.status(500).send('Server Error')
     }
 })
-
 
 
 const port = process.env.PORT || 5000

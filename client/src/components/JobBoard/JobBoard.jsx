@@ -15,9 +15,9 @@ import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
 
 //import Redux Actions and Selectors
-import { selectJobs } from '../../redux/slices/job/jobsSlice'
+import { fetchJobs, selectJobs } from '../../redux/slices/job/jobsSlice'
 import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
-import { createJob, getAllJobs } from '../../redux/slices/job/jobsThunk'
+
 
 const JobsDatabase = () => {
 
@@ -27,7 +27,7 @@ const JobsDatabase = () => {
 
   const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [openPopUp, setOpenPopUp] = useState(null);
+  const [popupId, setPopupId] = useState(null);
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
@@ -38,20 +38,23 @@ const JobsDatabase = () => {
 
   const handleEditJob = (id) => {
     console.log(`Editing job with id ${id}`)
+    setOpenDropdown(null);
     // dispatch(updateJob({job data here}))
   }
 
   const handleDeleteJob = (id) => {
-    setOpenPopUp(id);
+    setPopupId(id);
+    setOpenDropdown(null);
   }
 
   const handleDuplicateJob = (id) => {
-    console.log(`Duplicating job with id ${id}`)
+    console.log(`Duplicating job with id ${id}`);
+    setOpenDropdown(null);
     // dispatch(duplicateJob(id));
   }
 
   useEffect(() => {
-    dispatch(getAllJobs());
+    dispatch(fetchJobs());
   }, [dispatch]);
 
 
@@ -72,8 +75,8 @@ const JobsDatabase = () => {
         <AddJobModal onCloseModal={() => setModalVisibility(false)} />
       )}
 
-      {openPopUp && (
-        <DangerModal onClosePopUp={() => setOpenPopUp(null)} toDelete={openPopUp} />
+      {popupId && (
+        <DangerModal onClosePopUp={() => setPopupId(null)} dangerObject={{ header: 'Delete Job', message: 'Are you sure you want to permanently delete this job?', moreInfo: popupId }} />
       )}
 
       <table className='jobboard-table'>
@@ -109,8 +112,8 @@ const JobsDatabase = () => {
               <td><a href={job.role_link}>{job.role}</a></td>
               <td>{job.company}</td>
               <td>{job.description}</td>
-              <td>{job.city}, {job.state ? `${job.state},` : null} {job.country} ({job.workstyle})</td>
-              <td className={job.status === "To Apply" ? 'ToApply' : job.status}>{job.status}</td>
+              <td>{job.city}, {job.state_abbr ? `${job.state_abbr},` : null} {job.country} ({job.workstyle})</td>
+              <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
               <td>{job.applied_on}</td>
             </tr>
           )))}
