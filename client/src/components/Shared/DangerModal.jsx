@@ -5,11 +5,11 @@ import { deleteJob } from '../../redux/slices/job/jobsSlice'
 const DangerModal = (props) => {
 
     const { onClosePopUp, dangerObject } = props;
-    
     const dispatch = useDispatch();
 
     const onConfirmDelete = () => {
-        dispatch(deleteJob(dangerObject.moreInfo));
+        console.log(`Deleting job with id ${dangerObject.toDelete}`)
+        dispatch(deleteJob(dangerObject.toDelete));
         onClosePopUp();
     }
 

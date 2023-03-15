@@ -20,7 +20,7 @@ const AddJobForm = () => {
         connections: [],
         app_status: '',
         applied_on: '',
-        priority: '0',
+        priority: '5',
         created_at: '',
     });
 
@@ -30,7 +30,11 @@ const AddJobForm = () => {
         const editedField = event.target.getAttribute("name");
         const editedValue = event.target.value;
         const newJob = { ...formData };
-        newJob[editedField] = editedValue;
+        if (editedField === 'connections') {
+            newJob[editedField].push(editedValue);
+        } else {
+            newJob[editedField] = editedValue;
+        }
         setFormData(newJob);
     }
 

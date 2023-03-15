@@ -64,7 +64,7 @@ app.get("/api/v1/jobs/:id", async (req, res) => {
     if (results.rows.length === 0) {
         // check for other function that doesn't necessarily need to send data back
         res.status(404).json({
-            status: "failure"
+            status: "Resource does not exist"
         })
     }
 

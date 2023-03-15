@@ -1,4 +1,5 @@
 export const stateAbbrList = [
+    { 'label': '--Not Applicable--', 'value': '' },
     { 'label': 'Alabama', 'value': 'AL' },
     { 'label': 'Alaska', 'value': 'AK' },
     { 'label': 'American Samoa', 'value': 'AS' },

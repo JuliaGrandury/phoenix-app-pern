@@ -76,7 +76,7 @@ const JobsDatabase = () => {
       )}
 
       {popupId && (
-        <DangerModal onClosePopUp={() => setPopupId(null)} dangerObject={{ header: 'Delete Job', message: 'Are you sure you want to permanently delete this job?', moreInfo: popupId }} />
+        <DangerModal onClosePopUp={() => setPopupId(null)} dangerObject={{ header: 'Delete Job', message: 'Are you sure you want to permanently delete this job?', toDelete: popupId }} />
       )}
 
       <table className='jobboard-table'>
@@ -112,7 +112,7 @@ const JobsDatabase = () => {
               <td><a href={job.role_link}>{job.role}</a></td>
               <td>{job.company}</td>
               <td>{job.description}</td>
-              <td>{job.city}, {job.state_abbr ? `${job.state_abbr},` : null} {job.country} ({job.workstyle})</td>
+              <td>{job.city ? `${job.city},` : null} {job.state_abbr ? `${job.state_abbr},` : null} {job.country} {job.workstyle ? `(${job.workstyle})` : null}</td>
               <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
               <td>{job.applied_on}</td>
             </tr>
