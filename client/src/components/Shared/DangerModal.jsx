@@ -18,7 +18,6 @@ const DangerModal = (props) => {
             <div className="modal danger-popup">
                 <h4>{dangerObject.header}</h4>
                 <p>{dangerObject.message}</p>
-                <p></p>
                 <button className="small-btn button-info" onClick={onClosePopUp}>Cancel</button>
                 <button className="small-btn button-danger" onClick={onConfirmDelete}>Delete</button>
             </div>

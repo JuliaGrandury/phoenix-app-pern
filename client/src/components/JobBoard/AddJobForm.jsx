@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { stateAbbrList } from '../../utils/stateAbbr'
+import { useDispatch } from 'react-redux'
 import { addJob } from '../../redux/slices/job/jobsSlice'
 
 
@@ -10,18 +10,19 @@ const AddJobForm = () => {
     const [formData, setFormData] = useState({
         id: '',
         role: '',
-        role_link: '',
-        city: '',
-        state_abbr: '',
-        country: '',
-        workstyle: '',
+        role_link: null,
         company: '',
-        description: '',
+        company_link: null,
+        company_desc: null,
+        city: null,
+        state_abbr: null,
+        country: null,
         connections: [],
-        app_status: '',
-        applied_on: '',
+        workstyle: null,
+        app_status: null,
+        applied_on: null,
         priority: '5',
-        created_at: '',
+        created_at: null,
     });
 
     // editing form to add a new job
@@ -41,6 +42,7 @@ const AddJobForm = () => {
     // submitting form to add a new job
     const handleCreateJob = (event) => {
         event.preventDefault();
+        console.log(formData.applied_on);
         dispatch(addJob(formData));
     }
 
@@ -71,7 +73,7 @@ const AddJobForm = () => {
             <input className="country" type='text' name='country' placeholder='Country' onChange={handleAddJobFormChange} />
 
             <select className="status" name='app_status' required='required' onChange={handleAddJobFormChange}>
-                <option value="" disabled selected hidden>Application Status *</option>
+                <option value="DEFAULT" disabled>Application Status *</option>
                 <option value="To Apply">To Apply</option>
                 <option value="Applied">Applied</option>
                 <option value="Interviewing">Interviewing</option>

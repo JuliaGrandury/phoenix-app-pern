@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const options = {
     name: "jobSearch",
@@ -8,6 +8,9 @@ const options = {
             name: 'Software Engineer in Blue Tech',
             startdate: '12/08/2022',
             jobsIds: [],
+            // applications: 0,
+            // interviews: 0,
+            // rejections: 0,
         }],
     },
     reducers: {

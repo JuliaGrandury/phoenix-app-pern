@@ -15,11 +15,11 @@ import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
 
 //import Redux Actions and Selectors
-import { fetchJobs, selectJobs } from '../../redux/slices/job/jobsSlice'
 import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
+import { fetchJobs, selectJobs, fetchStatus, fetchError, addJob } from '../../redux/slices/job/jobsSlice'
 
 
-const JobsDatabase = () => {
+const JobBoard = () => {
 
   const jobSearch = useSelector(selectJobSearch);
   const jobs = useSelector(selectJobs);
@@ -28,6 +28,9 @@ const JobsDatabase = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [popupId, setPopupId] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
@@ -43,19 +46,22 @@ const JobsDatabase = () => {
   }
 
   const handleDeleteJob = (id) => {
+    console.log(`Deleting job with id ${id}`);
     setPopupId(id);
     setOpenDropdown(null);
   }
 
-  const handleDuplicateJob = (id) => {
-    console.log(`Duplicating job with id ${id}`);
+  const handleDuplicateJob = (job) => {
+    console.log(`Duplicating job with id ${job.id} and job role ${job.role}`);
     setOpenDropdown(null);
-    // dispatch(duplicateJob(id));
+    dispatch(addJob(job));
   }
 
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
+
+
 
 
   return (
@@ -89,6 +95,8 @@ const JobsDatabase = () => {
             <th>Location</th>
             <th>Status</th>
             <th>Applied On</th>
+            {/* th above is for priority column */}
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -100,26 +108,26 @@ const JobsDatabase = () => {
                   <BsThreeDotsVertical style={openDropdown === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setOpenDropdown(job.id)} />
                   <Fragment>
                     {openDropdown === job.id ? (
-                      <ul className="dropdown-content">
+                      <ul className="dropdown-content" >
                         <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
                         <li onClick={() => handleDeleteJob(job.id)}><AiOutlineDelete /> Delete</li>
-                        <li onClick={() => handleDuplicateJob(job.id)}><HiOutlineDuplicate /> Duplicate</li>
+                        <li onClick={() => handleDuplicateJob(job)}><HiOutlineDuplicate /> Duplicate</li>
                       </ul>
                     ) : <></>}
                   </Fragment>
                 </div>
               </td>
               <td><a href={job.role_link}>{job.role}</a></td>
-              <td>{job.company}</td>
-              <td>{job.description}</td>
+              <td><a href={job.company_link}>{job.company}</a></td>
+              <td>{job.company_desc}</td>
               <td>{job.city ? `${job.city},` : null} {job.state_abbr ? `${job.state_abbr},` : null} {job.country} {job.workstyle ? `(${job.workstyle})` : null}</td>
               <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
               <td>{job.applied_on}</td>
+              <td>{job.priority}</td>
             </tr>
           )))}
         </tbody>
         <tfoot>
-          <tr>{/* put pagination buttons here? */}</tr>
         </tfoot>
       </table>
 
@@ -127,4 +135,4 @@ const JobsDatabase = () => {
   )
 }
 
-export default JobsDatabase
+export default JobBoard

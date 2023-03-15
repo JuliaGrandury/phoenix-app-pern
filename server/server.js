@@ -6,6 +6,7 @@ const morgan = require("morgan")
 const app = express()
 const cors = require("cors")
 
+
 // middleware
 app.use(express.json())
 app.use(cors())
@@ -13,10 +14,10 @@ app.use(cors())
 
 // routes - create a job
 app.post("/api/v1/jobs", async (req, res) => {
-    const { role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority } = req.body;
+    const { role, role_link, company, company_link, company_desc, city, state_abbr, country, connections, workstyle, app_status, applied_on, priority } = req.body;
     try {
-        const results = await db.query(`INSERT INTO jobs (role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`, [role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority])
+        const results = await db.query(`INSERT INTO jobs (role, role_link, company, company_link, company_desc, city, state_abbr, country, connections, workstyle, app_status, applied_on, priority) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`, [role, role_link, company, company_link, company_desc, city, state_abbr, country, connections, workstyle, app_status, applied_on, priority])
         res.status(201).json({
             status: "success",
             data: {
@@ -79,10 +80,10 @@ app.get("/api/v1/jobs/:id", async (req, res) => {
 // routes - update a job
 app.put("/api/v1/jobs/:id", async (req, res) => {
     const { id } = req.params;
-    const { role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority } = req.body;
+    const { role, role_link, company, company_link, company_desc, city, state_abbr, country, connections, workstyle, app_status, applied_on, priority } = req.body;
     try {
-        const results = await db.query(`UPDATE jobs SET role=$1, role_link=$2, city=$3, state_abbr=$4, country=$5, workstyle=$6, company=$7, description=$8, connections=$9, app_status=$10, applied_on=$11, priority=$12 
-        WHERE id=$13 RETURNING *`, [role, role_link, city, state_abbr, country, workstyle, company, description, connections, app_status, applied_on, priority, id])
+        const results = await db.query(`UPDATE jobs SET role=$1, role_link=$2, company=$3, company_link=$4, company_desc=$5, city=$6, state_abbr=$7, country=$8, connections=$9, workstyle=$10, app_status=$11, applied_on=$12, priority=$13 
+        WHERE id=$14 RETURNING *`, [role, role_link, company, company_link, company_desc, city, state_abbr, country, connections, workstyle, app_status, applied_on, priority, id])
         res.status(200).json({
             status: "success",
             data: {
@@ -102,7 +103,7 @@ app.delete("/api/v1/jobs/:id", async (req, res) => {
         const results = await db.query("DELETE FROM jobs WHERE id=$1 ", [id])
         res.status(204).json({
             status: "success",
-            message: "Job was deleted from board"
+            message: `Job with id ${id} was deleted from board`
         })
     } catch (err) {
         console.error(err.message)

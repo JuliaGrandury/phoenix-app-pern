@@ -2,7 +2,7 @@
 const KanbanBoard = () => {
   return (
     <table>
-      <thead>
+      {/* <thead>
         <tr>
           <td>Monday</td>
           <td>Tuesday</td>
@@ -22,7 +22,7 @@ const KanbanBoard = () => {
           <td>Do this</td>
           <td>Do that</td>
         </tr>
-      </tbody>
+      </tbody> */}
     </table>
   )
 }

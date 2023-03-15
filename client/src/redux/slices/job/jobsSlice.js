@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { config } from '../../../config.js'
 
-
 // FETCH JOBS
 export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
   const res = await fetch(`${config.apiUrl}/api/v1/jobs`);
@@ -27,7 +26,7 @@ export const addJob = createAsyncThunk('jobs/addJob', async (newJob, { rejectWit
 })
 
 // DELETE A JOB
-export const deleteJob = createAsyncThunk('jobs/deletejob', async (id, { rejectWithValue }) => {
+export const deleteJob = createAsyncThunk('jobs/deleteJob', async (id, { rejectWithValue }) => {
   try {
     const response = await fetch(`${config.apiUrl}/api/v1/jobs/${id}`, {
       method: 'DELETE',
@@ -41,6 +40,22 @@ export const deleteJob = createAsyncThunk('jobs/deletejob', async (id, { rejectW
   }
 })
 
+// UPDATE A JOB
+export const updateJob = createAsyncThunk('jobs/updateJob', async (newJob, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${config.apiUrl}/api/v1/jobs/${newJob.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newJob),
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    return rejectWithValue(err.response.data);
+  }
+})
 
 
 
@@ -48,22 +63,22 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     jobs: [],
-    status: 'idle', // 'idle' || 'loading' || 'succeeded' || 'failed'
-    error: null,
+    fetchStatus: 'idle', // 'idle' || 'loading' || 'succeeded' || 'failed'
+    fetchError: null,
   },
   //extra reducers here
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
-        state.status = 'loading';
+        state.fetchStatus = 'loading';
       })
       .addCase(fetchJobs.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.fetchStatus = 'succeeded';
         state.jobs = action.payload;
       })
       .addCase(fetchJobs.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
+        state.fetchStatus = 'failed';
+        state.fetchError = action.error.message;
       })
       .addCase(addJob.fulfilled, (state, action) => {
         state.jobs.push(action.payload)
@@ -75,15 +90,10 @@ const jobsSlice = createSlice({
       //     state.jobs[currentJobIndex] = action.payload;
       //   }
       // })
-      .addCase(deleteJob.pending, (state) => {
-        state.status = 'loading';
-      })
       .addCase(deleteJob.fulfilled, (state, action) => {
-        state.status = 'succeeded';
         state.jobs.filter((job) => job.id !== action.meta.arg);
       })
       .addCase(deleteJob.rejected, (state, action) => {
-        state.status = 'failed';
         state.error = action.error.message;
       })
   }
@@ -92,8 +102,8 @@ const jobsSlice = createSlice({
 
 //selector
 export const selectJobs = (state) => state.jobs.jobs;
-export const isLoadingJobs = (state) => state.jobs.isLoadingJobs;
-export const hasError = (state) => state.jobs.hasError;
+export const fetchStatus = (state) => state.jobs.fetchStatus;
+export const fetchError = (state) => state.jobs.fetchError;
 
 //reducer
 export default jobsSlice.reducer;
