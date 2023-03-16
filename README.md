@@ -44,7 +44,7 @@ https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-
 #### Prerequisites
 1. You will need to have Node.js and npm package manager installed. Verify that you do with the commands `node -v` and `npm -v`.
 If you do not, visit [Node.js](https://nodejs.org/en/) and download the version labeled LTS. To install the latest version of npm run `npm install npm@latest -g`. Finally, verify that both are correctly installed using `node -v` and `npm -v`.
-2. You will also need to have [PostgreSQL](https://www.postgresql.org/download/) installed. Verify that you do with the command `psql --version`. If you do not, visit [Install PostgreSQL macOS](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/) or [Install PostgreSQL on Windows](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/) for help. Ensure that you checked "PostgreSQL Server" and "Command Line Tools" during the installation. (Note: Take note of your postgres password and keep it private as you will need it later!)
+2. You will also need to have PostgreSQL installed. Verify that you do with the command `psql --version`. If you do not, visit [PostgreSQL](https://www.postgresql.org/download/) to download it and [Install PostgreSQL macOS](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/) or [Install PostgreSQL on Windows](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/) for help. Ensure that you checked "PostgreSQL Server" and "Command Line Tools" during the installation. (Note: Take note of your postgres password and keep it private as you will need it later!)
 
 #### Installation Steps
 1. Download the ZIP: At the top right of the web version of Github, click on the green button "<> Code" > Download Zip > Double-click on the ZIP folder to uncompress it OR clone the repo with:
@@ -59,7 +59,7 @@ If you do not, visit [Node.js](https://nodejs.org/en/) and download the version 
 4. Create a .env file in your server folder with the following variables:
   ```
   PORT = 5000
-  NODE_ENV = development
+  NODE_ENV = development // Note: you will change this to "production" in production
   CLIENT_URL = "http://localhost:3000"
   PGUSER=postgres
   PGPASSWORD="your postgres password"
