@@ -67,7 +67,7 @@ If you do not, visit [Node.js](https://nodejs.org/en/) and download the version 
   PGPORT=5432
   PGDATABASE="your database name"
   ```
-5. Create a config.js file with the following:
+5. Create a config.js file in client/src with the following:
   ```
   const localConfig = {
       apiUrl: "http://localhost:5000"
