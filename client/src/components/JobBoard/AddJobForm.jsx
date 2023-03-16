@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { stateAbbrList } from '../../utils/stateAbbr'
 import { useDispatch } from 'react-redux'
-import { addJob } from '../../redux/slices/job/jobsSlice'
+import { addJob, fetchJobs } from '../../redux/slices/job/jobsSlice'
 
 
 const AddJobForm = () => {
@@ -32,7 +32,7 @@ const AddJobForm = () => {
         const editedValue = event.target.value;
         const newJob = { ...formData };
         if (editedField === 'connections') {
-            newJob[editedField] = (editedValue);
+            newJob[editedField].push(editedValue);
         } else {
             newJob[editedField] = editedValue;
         }
@@ -44,6 +44,7 @@ const AddJobForm = () => {
         event.preventDefault();
         console.log(formData.applied_on);
         dispatch(addJob(formData));
+        dispatch(fetchJobs());
     }
 
     return (

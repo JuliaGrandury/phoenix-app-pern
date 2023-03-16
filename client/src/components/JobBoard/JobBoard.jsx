@@ -26,8 +26,8 @@ const JobBoard = () => {
   const jobs = useSelector(selectJobs);
   const dispatch = useDispatch();
 
-  const [openDropdown, setOpenDropdown] = useState(null);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [dropdownId, setDropdownId] = useState(null);
   const [popupId, setPopupId] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -38,29 +38,29 @@ const JobBoard = () => {
   }
 
   // Close dropdown if user clicks outside of it
-  // document.addEventListener('mousedown', (() => setOpenDropdown(null)))
+  // document.addEventListener('mousedown', (() => setDropdownId(null)))
 
   const handleEditJob = (id) => {
     console.log(`Editing job with id ${id}`)
-    setOpenDropdown(null);
+    setDropdownId(null);
     // dispatch(updateJob({job data here}))
   }
 
   const handleDeleteJob = (id) => {
     console.log(`Deleting job with id ${id}`);
     setPopupId(id);
-    setOpenDropdown(null);
+    setDropdownId(null);
   }
 
   const handleDuplicateJob = (job) => {
-    console.log(`Duplicating job with id ${job.id} and job role ${job.role}`);
-    setOpenDropdown(null);
+    setDropdownId(null);
     dispatch(addJob(job));
+    dispatch(fetchJobs());
   }
 
   useEffect(() => {
     dispatch(fetchJobs());
-  }, [dispatch]);
+  }, [dispatch, modalVisibility, popupId]);
 
 
   console.log(`Fetch status is `)
@@ -106,9 +106,9 @@ const JobBoard = () => {
               {/* Pop up with Edit, Delete, Duplicate */}
               <td>
                 <div className="actions-dropdown">
-                  <BsThreeDotsVertical style={openDropdown === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setOpenDropdown(job.id)} />
+                  <BsThreeDotsVertical style={dropdownId === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setDropdownId(job.id)} />
                   <Fragment>
-                    {openDropdown === job.id ? (
+                    {dropdownId === job.id ? (
                       <ul className="dropdown-content" >
                         <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
                         <li onClick={() => handleDeleteJob(job.id)}><AiOutlineDelete /> Delete</li>

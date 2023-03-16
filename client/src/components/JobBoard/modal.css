@@ -2,7 +2,7 @@
     /* change from position absolute to fixed so it would stay with scroll but really
     should just disable scroll when the modal is open */
     position: fixed;
-    z-index: 9;
+    z-index: 5;
     top: 0;
     right: 0;
     bottom: 0;
