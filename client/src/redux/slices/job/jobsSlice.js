@@ -102,7 +102,7 @@ const jobsSlice = createSlice({
 
 //selector
 export const selectJobs = (state) => state.jobs.jobs;
-export const fetchStatus = (state) => state.jobs.fetchStatus;
+export const fetchStatus = (state) => state.jobs.jobs.fetchStatus;
 export const fetchError = (state) => state.jobs.fetchError;
 
 //reducer

@@ -13,6 +13,7 @@ import { FiEdit3 } from 'react-icons/fi'
 //import Other Components
 import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
+import Spinner from '../Shared/Spinner'
 
 //import Redux Actions and Selectors
 import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
@@ -62,7 +63,7 @@ const JobBoard = () => {
   }, [dispatch]);
 
 
-
+  console.log(`Fetch status is `)
 
   return (
     <div className='jobboard-container'>
@@ -127,8 +128,6 @@ const JobBoard = () => {
             </tr>
           )))}
         </tbody>
-        <tfoot>
-        </tfoot>
       </table>
 
     </div>

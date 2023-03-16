@@ -32,7 +32,7 @@ const AddJobForm = () => {
         const editedValue = event.target.value;
         const newJob = { ...formData };
         if (editedField === 'connections') {
-            newJob[editedField].push(editedValue);
+            newJob[editedField] = (editedValue);
         } else {
             newJob[editedField] = editedValue;
         }
@@ -73,7 +73,7 @@ const AddJobForm = () => {
             <input className="country" type='text' name='country' placeholder='Country' onChange={handleAddJobFormChange} />
 
             <select className="status" name='app_status' required='required' onChange={handleAddJobFormChange}>
-                <option value="DEFAULT" disabled>Application Status *</option>
+                <option value="" disabled selected hidden>Application Status *</option>
                 <option value="To Apply">To Apply</option>
                 <option value="Applied">Applied</option>
                 <option value="Interviewing">Interviewing</option>
