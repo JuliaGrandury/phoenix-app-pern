@@ -56,7 +56,7 @@ If you do not, visit [Node.js](https://nodejs.org/en/) and download the version 
    npm i
    ```
 3. Create your own postgreSQL database and tables with the commands in db.sql.
-4. Create a .env file in your server folder with the following variables.
+4. Create a .env file in your server folder with the following variables:
   ```
   PORT = 5000
   NODE_ENV = development
@@ -67,7 +67,16 @@ If you do not, visit [Node.js](https://nodejs.org/en/) and download the version 
   PGPORT=5432
   PGDATABASE="your database name"
   ```
-5. Create a .config file 
+5. Create a config.js file with the following:
+  ```
+  const localConfig = {
+      apiUrl: "http://localhost:5000"
+  }
+  const prodConfig = {
+      apiUrl: "your production URL here"
+  }
+  export const config = process.env.NODE_ENV === "production" ? prodConfig : localConfig
+  ```
 6. Run the frontend of the application using `npm run start` and the backend using `nodemon server.js`
 7. Run the test suite using `npm test` or a specific file using `npm test <filepath>`
 
