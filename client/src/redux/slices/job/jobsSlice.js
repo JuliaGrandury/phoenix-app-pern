@@ -1,11 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { config } from '../../../config.js'
 
+
+// Note: next improvement is to wrap all thunks in try catch and check if !response.ok
+
 // FETCH JOBS
 export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
-  const res = await fetch(`${config.apiUrl}/api/v1/jobs`);
-  const alljobs = await res.json();
-  return alljobs.data.jobs;
+  try {
+    const res = await fetch(`${config.apiUrl}/api/v1/jobs`);
+    const alljobs = await res.json();
+    return alljobs.data.jobs;
+  } catch (err) {
+    console.error(err);
+  }
 })
 
 // CREATE A JOB
@@ -63,22 +70,22 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     jobs: [],
-    fetchStatus: 'idle', // 'idle' || 'loading' || 'succeeded' || 'failed'
-    fetchError: null,
+    fetchingJobs: 'idle', // 'idle' || 'loading' || 'succeeded' || 'failed'
+    hasError: null, 
   },
   //extra reducers here
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
-        state.fetchStatus = 'loading';
+        state.fetchingJobs = 'loading';
       })
       .addCase(fetchJobs.fulfilled, (state, action) => {
-        state.fetchStatus = 'succeeded';
+        state.fetchingJobs = 'succeeded';
         state.jobs = action.payload;
       })
       .addCase(fetchJobs.rejected, (state, action) => {
-        state.fetchStatus = 'failed';
-        state.fetchError = action.error.message;
+        state.fetchingJobs = 'failed';
+        state.hasError = action.error.message;
       })
       .addCase(addJob.fulfilled, (state, action) => {
         state.jobs.push(action.payload)
@@ -94,7 +101,7 @@ const jobsSlice = createSlice({
         state.jobs.filter((job) => job.id !== action.meta.arg);
       })
       .addCase(deleteJob.rejected, (state, action) => {
-        state.error = action.error.message;
+        state.hasError = action.error.message;
       })
   }
 });
@@ -102,8 +109,8 @@ const jobsSlice = createSlice({
 
 //selector
 export const selectJobs = (state) => state.jobs.jobs;
-export const fetchStatus = (state) => state.jobs.jobs.fetchStatus;
-export const fetchError = (state) => state.jobs.fetchError;
+export const fetchingJobs = (state) => state.jobs.fetchingJobs;
+export const hasError = (state) => state.jobs.hasError;
 
 //reducer
 export default jobsSlice.reducer;

@@ -92,7 +92,7 @@
     background-color: var(--bg-darkgrey);
     border-radius: 6px;
     font-size: 14px;
-    border-spacing: 15px 25px;
+    /* border-spacing: 15px 25px; */
     text-align: center;
 }
 
@@ -101,8 +101,11 @@
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    /* padding: 1rem 0.5rem;
-    text-align: center; */
+    padding: 1rem 0rem;
+}
+
+.jobboard-table td {
+    padding: 0.5rem;
 }
 
 .jobboard-table td:first-of-type {
@@ -155,4 +158,5 @@
 .Rejected,
 .Ghosted {
     font-weight: 500;
+    letter-spacing: 0.3px;
 }

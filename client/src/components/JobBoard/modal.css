@@ -113,7 +113,7 @@
         "company connections workstyle"
         "description description description"
         "city state country"
-        "status status applied_on"
+        "status priority applied_on"
         "save-job save-job save-job";
     gap: 10px;
 }
@@ -156,6 +156,10 @@
 
 .status {
     grid-area: status;
+}
+
+.priority {
+    grid-area: priority;
 }
 
 .applied_on {

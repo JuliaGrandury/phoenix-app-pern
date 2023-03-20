@@ -9,25 +9,30 @@ import { TbFileExport } from 'react-icons/tb'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { FiEdit3 } from 'react-icons/fi'
+import { BsFilter } from 'react-icons/bs'
 
 //import Other Components
 import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
 import Spinner from '../Shared/Spinner'
+import WriteOnlyRow from './WriteOnlyRow'
+import ReadOnlyRow from './ReadOnlyRow'
 
 //import Redux Actions and Selectors
 import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
-import { fetchJobs, selectJobs, fetchStatus, fetchError, addJob } from '../../redux/slices/job/jobsSlice'
+import { fetchJobs, selectJobs, fetchingJobs, fetchError, addJob } from '../../redux/slices/job/jobsSlice'
 
 
 const JobBoard = () => {
 
+  const dispatch = useDispatch();
   const jobSearch = useSelector(selectJobSearch);
   const jobs = useSelector(selectJobs);
-  const dispatch = useDispatch();
+  const fetchStatus = useSelector(fetchingJobs);
 
   const [modalVisibility, setModalVisibility] = useState(false);
   const [dropdownId, setDropdownId] = useState(null);
+  const [toEditId, setToEditId] = useState(null);
   const [popupId, setPopupId] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,6 +47,7 @@ const JobBoard = () => {
 
   const handleEditJob = (id) => {
     console.log(`Editing job with id ${id}`)
+    setToEditId(id);
     setDropdownId(null);
     // dispatch(updateJob({job data here}))
   }
@@ -53,9 +59,9 @@ const JobBoard = () => {
   }
 
   const handleDuplicateJob = (job) => {
-    setDropdownId(null);
     dispatch(addJob(job));
     dispatch(fetchJobs());
+    setDropdownId(null);
   }
 
   useEffect(() => {
@@ -63,7 +69,7 @@ const JobBoard = () => {
   }, [dispatch, modalVisibility, popupId]);
 
 
-  console.log(`Fetch status is `)
+  console.log(`Fetch status is ${fetchStatus}`)
 
   return (
     <div className='jobboard-container'>
@@ -90,43 +96,33 @@ const JobBoard = () => {
         <thead>
           <tr>
             <th></th>
-            <th>Role</th>
-            <th>Company</th>
+            {/* add buttons on all to Sort Ascending, Sort Descending, and Filter (input field) */}
+            <th>Role <BsFilter/></th>
+            <th>Company <BsFilter/></th>
             <th>Description</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>Applied On</th>
-            {/* th above is for priority column */}
+            <th>Location <BsFilter/></th>
+            <th>Status <BsFilter/></th>
+            <th>Applied On <BsFilter/></th>
+            {/* th below is for priority column */}
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {jobs.map((job => (
-            <tr key={job.id}>
-              {/* Pop up with Edit, Delete, Duplicate */}
-              <td>
-                <div className="actions-dropdown">
-                  <BsThreeDotsVertical style={dropdownId === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setDropdownId(job.id)} />
-                  <Fragment>
-                    {dropdownId === job.id ? (
-                      <ul className="dropdown-content" >
-                        <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
-                        <li onClick={() => handleDeleteJob(job.id)}><AiOutlineDelete /> Delete</li>
-                        <li onClick={() => handleDuplicateJob(job)}><HiOutlineDuplicate /> Duplicate</li>
-                      </ul>
-                    ) : <></>}
-                  </Fragment>
-                </div>
-              </td>
-              <td><a href={job.role_link}>{job.role}</a></td>
-              <td><a href={job.company_link}>{job.company}</a></td>
-              <td>{job.company_desc}</td>
-              <td>{job.city ? `${job.city},` : null} {job.state_abbr ? `${job.state_abbr},` : null} {job.country} {job.workstyle ? `(${job.workstyle})` : null}</td>
-              <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
-              <td>{job.applied_on}</td>
-              <td>{job.priority}</td>
-            </tr>
-          )))}
+          {jobs.map((job) => (
+            <Fragment key={job.id}>
+              {toEditId === job.id ? (
+                <WriteOnlyRow
+                  jobInEdit={job}
+                  handleEditJob={handleEditJob} />
+              ) : (
+                <ReadOnlyRow
+                  job={job}
+                  handleEditJob={handleEditJob}
+                  handleDeleteJob={handleDeleteJob}
+                  handleDuplicateJob={handleDuplicateJob} />
+              )}
+            </Fragment>
+          ))}
         </tbody>
       </table>
 
