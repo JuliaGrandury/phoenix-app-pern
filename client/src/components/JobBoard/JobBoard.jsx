@@ -1,5 +1,5 @@
-import { useState, Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect, Fragment } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import './jobboard.css'
 
 //import React Icons
@@ -10,45 +10,68 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { FiEdit3 } from 'react-icons/fi'
 
-import { selectJobs } from '../../redux/slices/jobboard/jobBoardSlice'
+//import Other Components
 import AddJobModal from './AddJobModal'
 import DangerModal from '../Shared/DangerModal'
+import Spinner from '../Shared/Spinner'
 
-const JobsDatabase = () => {
+//import Redux Actions and Selectors
+import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
+import { fetchJobs, selectJobs, fetchStatus, fetchError, addJob } from '../../redux/slices/job/jobsSlice'
 
+
+const JobBoard = () => {
+
+  const jobSearch = useSelector(selectJobSearch);
   const jobs = useSelector(selectJobs);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const dispatch = useDispatch();
+
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [openPopUp, setOpenPopUp] = useState(false);
+  const [dropdownId, setDropdownId] = useState(null);
+  const [popupId, setPopupId] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
   }
 
   // Close dropdown if user clicks outside of it
-  // document.addEventListener('mousedown', (() => setOpenDropdown(null)))
+  // document.addEventListener('mousedown', (() => setDropdownId(null)))
 
   const handleEditJob = (id) => {
     console.log(`Editing job with id ${id}`)
+    setDropdownId(null);
+    // dispatch(updateJob({job data here}))
   }
 
   const handleDeleteJob = (id) => {
-    setOpenPopUp(true);
-    console.log(`Deleting job with id ${id}`)
+    console.log(`Deleting job with id ${id}`);
+    setPopupId(id);
+    setDropdownId(null);
   }
 
-  const handleDuplicateJob = (id) => {
-    console.log(`Duplicating job with id ${id}`)
+  const handleDuplicateJob = (job) => {
+    setDropdownId(null);
+    dispatch(addJob(job));
+    dispatch(fetchJobs());
   }
 
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, [dispatch, modalVisibility, popupId]);
+
+
+  console.log(`Fetch status is `)
 
   return (
     <div className='jobboard-container'>
 
       <header className='jobboard-header'>
-        <h2 className='jobboard-title'>Beekeeper 2023</h2>
+        <h2 className='jobboard-title'>{jobSearch[0].name}</h2>
         <div className='jobboard-info'>
-          <p className='jobboard-results'>100 results</p>
+          <p className='jobboard-results'>{`${jobs.length} results`}</p>
           <i className='jobboard-icons'><IoMdAddCircleOutline onClick={() => { setModalVisibility(true) }} /></i>
           <i className='jobboard-icons'><TbFileExport onClick={onAddDocument} /></i>
         </div>
@@ -59,8 +82,8 @@ const JobsDatabase = () => {
         <AddJobModal onCloseModal={() => setModalVisibility(false)} />
       )}
 
-      {openPopUp && (
-        <DangerModal onClosePopUp={() => setOpenPopUp(false)}/>
+      {popupId && (
+        <DangerModal onClosePopUp={() => setPopupId(null)} dangerObject={{ header: 'Delete Job', message: 'Are you sure you want to permanently delete this job?', toDelete: popupId }} />
       )}
 
       <table className='jobboard-table'>
@@ -73,6 +96,8 @@ const JobsDatabase = () => {
             <th>Location</th>
             <th>Status</th>
             <th>Applied On</th>
+            {/* th above is for priority column */}
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -81,34 +106,32 @@ const JobsDatabase = () => {
               {/* Pop up with Edit, Delete, Duplicate */}
               <td>
                 <div className="actions-dropdown">
-                  <BsThreeDotsVertical style={openDropdown === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setOpenDropdown(job.id)} />
+                  <BsThreeDotsVertical style={dropdownId === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setDropdownId(job.id)} />
                   <Fragment>
-                    {openDropdown === job.id ? (
-                      <ul className="dropdown-content">
+                    {dropdownId === job.id ? (
+                      <ul className="dropdown-content" >
                         <li onClick={() => handleEditJob(job.id)}><FiEdit3 /> Edit</li>
                         <li onClick={() => handleDeleteJob(job.id)}><AiOutlineDelete /> Delete</li>
-                        <li onClick={() => handleDuplicateJob(job.id)}><HiOutlineDuplicate /> Duplicate</li>
+                        <li onClick={() => handleDuplicateJob(job)}><HiOutlineDuplicate /> Duplicate</li>
                       </ul>
                     ) : <></>}
                   </Fragment>
                 </div>
               </td>
               <td><a href={job.role_link}>{job.role}</a></td>
-              <td>{job.company}</td>
-              <td>{job.description}</td>
-              <td>{job.city}, {job.state ? `${job.state},` : null} {job.country} ({job.workstyle})</td>
-              <td className={job.status === "To Apply" ? 'ToApply' : job.status}>{job.status}</td>
+              <td><a href={job.company_link}>{job.company}</a></td>
+              <td>{job.company_desc}</td>
+              <td>{job.city ? `${job.city},` : null} {job.state_abbr ? `${job.state_abbr},` : null} {job.country} {job.workstyle ? `(${job.workstyle})` : null}</td>
+              <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
               <td>{job.applied_on}</td>
+              <td>{job.priority}</td>
             </tr>
           )))}
         </tbody>
-        <tfoot>
-          <tr>{/* put pagination buttons here? */}</tr>
-        </tfoot>
       </table>
 
     </div>
   )
 }
 
-export default JobsDatabase
+export default JobBoard

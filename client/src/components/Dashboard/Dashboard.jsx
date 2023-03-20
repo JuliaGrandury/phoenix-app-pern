@@ -1,12 +1,16 @@
 import { FaUserCircle } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RiCloseFill } from 'react-icons/ri'
+import { IoMdAddCircleOutline } from 'react-icons/io'
+
 import KanbanBoard from '../KanbanBoard'
 import StatisticsCard from './StatisticsCard'
 import kanbanboard_img from './kanbanboard.png'
 import './dashboard.css'
 
 const Home = () => {
+
+
 
     return (
         <div className="dashboard-container">
@@ -29,7 +33,7 @@ const Home = () => {
                 </div>
 
                 <div className="card">
-                    <h3>Current Courses</h3>
+                    <h3>Current Courses<IoMdAddCircleOutline /></h3>
                     <table className="extra-table">
                         <tbody>
                             <tr>
@@ -55,7 +59,7 @@ const Home = () => {
                 </div>
 
                 <div className="card">
-                    <h3>Current Projects</h3>
+                    <h3>Current Projects <IoMdAddCircleOutline /></h3>
                     <table className="extra-table">
                         <tbody>
                             <tr>

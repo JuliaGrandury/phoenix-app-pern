@@ -18,6 +18,7 @@ const NavBar = () => {
         <ul>
           {user ? (
             <>
+              <li><NavLink to='/testpage'>Test Page</NavLink></li>
               <li><NavLink to='/'>Dashboard</NavLink></li>
               <li><NavLink to='/jobboard'>Job Applications</NavLink></li>
               <li><NavLink to='/networkgraph'>Network</NavLink></li>
