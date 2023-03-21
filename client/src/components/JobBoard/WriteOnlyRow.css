@@ -1,0 +1,47 @@
+/* FOR READ ONLY ROW */
+
+
+/* FOR WRITE ONLY ROW */
+.save_change {
+    color: var(--primary-blue);
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.inRowForm {
+    border: 1px solid var(--primary-blue);
+    height: 60px;
+}
+
+.inRowForm input,
+textarea {
+    /* width: 100%; */
+}
+
+.company_desc {
+    vertical-align: top;
+    overflow: scroll;
+}
+
+.location_inputs {
+    display: inline-grid;
+    /* column-gap: 1px; */
+    row-gap: 1px;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "city state_abbr"
+        "country country";
+}
+
+.city {
+    grid-area: city;
+}
+
+.state_abbr {
+    grid-area: state_abbr;
+}
+
+.country {
+    grid-area: country;
+}

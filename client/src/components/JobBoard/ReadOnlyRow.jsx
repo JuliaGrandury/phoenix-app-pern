@@ -3,18 +3,22 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { FiEdit3 } from 'react-icons/fi'
 import { HiOutlineDuplicate } from 'react-icons/hi'
+import PriorityPyramid from './PriorityPyramid'
+import { getRowColor } from '../../utils/getItemColor'
 
-const ReadOnlyRow = ({ job, handleEditJob, handleDeleteJob, handleDuplicateJob }) => {
+
+const ReadOnlyRow = ({ job, openDropdown, handleEditJob, handleDeleteJob, handleDuplicateJob }) => {
 
   //store the id of job for which one of the actions might occur
-  const [dropdownId, setDropdownId] = useState(null);
+  const [dropdownId, setDropdownId] = useState(openDropdown);
+  const rowColor = getRowColor(job.app_status);
 
   return (
     <tr key={job.id}>
       {/* Pop up with Edit, Delete, Duplicate */}
       <td>
         <div className="actions-dropdown">
-          <BsThreeDotsVertical style={dropdownId === job.id ? { color: "#5899FA" } : { color: "slategrey" }} onClick={() => setDropdownId(job.id)} />
+          <BsThreeDotsVertical style={dropdownId === job.id ? { color: "#5899FA", verticalAlign: 'baseline' } : { color: "slategrey", verticalAlign: 'baseline' }} onClick={() => setDropdownId(job.id)} />
           <Fragment>
             {dropdownId === job.id ? (
               <ul className="dropdown-content" >
@@ -26,13 +30,13 @@ const ReadOnlyRow = ({ job, handleEditJob, handleDeleteJob, handleDuplicateJob }
           </Fragment>
         </div>
       </td>
-      <td><a href={job.role_link}>{job.role}</a></td>
+      <td className='role'><a href={job.role_link}>{job.role}</a></td>
       <td><a href={job.company_link}>{job.company}</a></td>
-      <td>{job.company_desc}</td>
+      <td className='company_description'>{job.company_desc}</td>
       <td>{job.city ? `${job.city},` : null} {job.state_abbr ? `${job.state_abbr},` : null} {job.country} {job.workstyle ? `(${job.workstyle})` : null}</td>
-      <td className={job.app_status === "To Apply" ? 'ToApply' : job.app_status}>{job.app_status}</td>
+      <td style={{ color: rowColor, fontWeight: 500 }}>{job.app_status}</td>
       <td>{new Date(job.applied_on).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
-      <td>{job.priority}</td>
+      <td><PriorityPyramid level={job.priority} color={rowColor} /></td>
     </tr>
   )
 }

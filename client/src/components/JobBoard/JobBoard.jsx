@@ -4,11 +4,7 @@ import './jobboard.css'
 
 //import React Icons
 import { IoMdAddCircleOutline } from 'react-icons/io'
-import { HiOutlineDuplicate } from 'react-icons/hi'
 import { TbFileExport } from 'react-icons/tb'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { AiOutlineDelete } from 'react-icons/ai'
-import { FiEdit3 } from 'react-icons/fi'
 import { BsFilter } from 'react-icons/bs'
 
 //import Other Components
@@ -19,9 +15,9 @@ import WriteOnlyRow from './WriteOnlyRow'
 import ReadOnlyRow from './ReadOnlyRow'
 
 //import Redux Actions and Selectors
-import { selectJobSearch } from '../../redux/slices/jobsearch/jobSearchSlice'
-import { fetchJobs, selectJobs, fetchingJobs, fetchError, addJob } from '../../redux/slices/job/jobsSlice'
-
+import { selectJobSearch } from '../../redux/slices/jobSearchSlice'
+import { fetchJobs, addJob } from '../../redux/thunks/jobsThunks'
+import { selectJobs, fetchingJobs, fetchError } from '../../redux/slices/jobsSlice'
 
 const JobBoard = () => {
 
@@ -35,8 +31,8 @@ const JobBoard = () => {
   const [toEditId, setToEditId] = useState(null);
   const [popupId, setPopupId] = useState(null);
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterValue, setFilterValue] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [filterValue, setFilterValue] = useState('');
 
   const onAddDocument = () => {
     alert('This feature is currently in development');
@@ -49,19 +45,17 @@ const JobBoard = () => {
     console.log(`Editing job with id ${id}`)
     setToEditId(id);
     setDropdownId(null);
-    // dispatch(updateJob({job data here}))
   }
 
   const handleDeleteJob = (id) => {
-    console.log(`Deleting job with id ${id}`);
     setPopupId(id);
     setDropdownId(null);
   }
 
   const handleDuplicateJob = (job) => {
+    setDropdownId(null);
     dispatch(addJob(job));
     dispatch(fetchJobs());
-    setDropdownId(null);
   }
 
   useEffect(() => {
@@ -97,12 +91,12 @@ const JobBoard = () => {
           <tr>
             <th></th>
             {/* add buttons on all to Sort Ascending, Sort Descending, and Filter (input field) */}
-            <th>Role <BsFilter/></th>
-            <th>Company <BsFilter/></th>
-            <th>Description</th>
-            <th>Location <BsFilter/></th>
-            <th>Status <BsFilter/></th>
-            <th>Applied On <BsFilter/></th>
+            <th className='role'>Role <BsFilter style={{ verticalAlign: 'middle' }} /></th>
+            <th>Company <BsFilter style={{ verticalAlign: 'middle' }} /></th>
+            <th className='company_description'>Description</th>
+            <th>Location <BsFilter style={{ verticalAlign: 'middle' }} /></th>
+            <th>Status <BsFilter style={{ verticalAlign: 'middle' }} /></th>
+            <th>Applied On <BsFilter style={{ verticalAlign: 'middle' }} /></th>
             {/* th below is for priority column */}
             <th></th>
           </tr>
@@ -112,11 +106,12 @@ const JobBoard = () => {
             <Fragment key={job.id}>
               {toEditId === job.id ? (
                 <WriteOnlyRow
-                  jobInEdit={job}
-                  handleEditJob={handleEditJob} />
+                  jobInEdit={job} 
+                  setToEditId={setToEditId}/>
               ) : (
                 <ReadOnlyRow
                   job={job}
+                  openDropdown={dropdownId}
                   handleEditJob={handleEditJob}
                   handleDeleteJob={handleDeleteJob}
                   handleDuplicateJob={handleDuplicateJob} />

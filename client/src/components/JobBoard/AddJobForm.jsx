@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { stateAbbrList } from '../../utils/stateAbbr'
 import { useDispatch } from 'react-redux'
-import { addJob, fetchJobs } from '../../redux/slices/job/jobsSlice'
+import { addJob, fetchJobs } from '../../redux/thunks/jobsThunks'
 
 
 const AddJobForm = () => {
@@ -86,8 +86,6 @@ const AddJobForm = () => {
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
             </select>
             <input className="applied_on" type="date" name="applied_on" placeholder="Select a date" onChange={handleAddJobFormChange} />
 
