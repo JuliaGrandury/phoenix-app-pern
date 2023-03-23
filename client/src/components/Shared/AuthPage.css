@@ -40,7 +40,7 @@
     z-index: 2;
 }
 
-form {
+.auth-container form {
     background: purple;
     display: flex;
     align-items: center;
@@ -51,3 +51,25 @@ form {
     text-align: center;
 }
 
+.auth-container p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 15px 0 20px;
+}
+
+.auth-container input {
+    background-color: #eee;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    width: 100%;
+
+}
+
+.auth-container a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
