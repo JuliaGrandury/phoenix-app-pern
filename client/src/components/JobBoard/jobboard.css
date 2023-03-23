@@ -2,6 +2,7 @@
     width: 95%;
     margin: 2.5%;
     padding-bottom: 1rem;
+    letter-spacing: 0.4px;
 }
 
 
@@ -55,7 +56,7 @@
     background-color: var(--bg-darkgrey);
     border: 0.5px solid var(--primary-grey);
     border-radius: 5px;
-    min-width: 110px;
+    min-width: 115px;
     z-index: 1;
 }
 
@@ -92,8 +93,14 @@
     background-color: var(--bg-darkgrey);
     border-radius: 6px;
     font-size: 14px;
-    border-spacing: 15px 25px;
     text-align: center;
+    /* its border collapse or border spacing */
+    /* border-collapse: collapse; */
+    border-spacing: 0px 20px;
+}
+
+.jobboard-table td {
+    height: 60px;
 }
 
 .jobboard-table th {
@@ -101,8 +108,11 @@
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    /* padding: 1rem 0.5rem;
-    text-align: center; */
+    padding: 1rem 0.5rem;
+}
+
+.jobboard-table td {
+    padding: 0rem 0.5rem;
 }
 
 .jobboard-table td:first-of-type {
@@ -119,7 +129,7 @@
 
 .jobboard-table td,
 .jobboard-table th {
-    max-width: 210px;
+    max-width: 200px;
 }
 
 .jobboard-table a {
@@ -127,32 +137,12 @@
     font-weight: 500;
 }
 
-.ToApply {
-    color: var(--primary-red);
+.role {
+    min-width: 15px;
 }
 
-.Applied {
-    color: var(--primary-yellow);
-}
-
-.Interviewing {
-    color: var(--primary-orange);
-}
-
-.Offer {
-    color: var(--primary-green);
-}
-
-.Rejected,
-.Ghosted {
-    color: var(--primary-grey);
-}
-
-.ToApply,
-.Applied,
-.Interviewing,
-.Offer,
-.Rejected,
-.Ghosted {
-    font-weight: 500;
+@media screen and (max-width: 1250px) {
+    .company_description {
+        display: none;
+    }
 }

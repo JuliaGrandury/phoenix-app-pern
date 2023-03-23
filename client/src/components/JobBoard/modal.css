@@ -113,7 +113,7 @@
         "company connections workstyle"
         "description description description"
         "city state country"
-        "status status applied_on"
+        "status applied_on priority"
         "save-job save-job save-job";
     gap: 10px;
 }
@@ -162,6 +162,10 @@
     grid-area: applied_on;
 }
 
+.priority {
+    grid-area: priority;
+}
+
 .save-job {
     grid-area: save-job;
     width: 20%;
@@ -196,6 +200,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .form-container select:invalid,
 .form-container input::placeholder {
     color: slategray;
+    vertical-align: center;
 }
 
 @media screen and (max-width: 1250px) {
@@ -215,6 +220,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             "state"
             "status"
             "applied_on"
+            "priority"
             "save-job";
     }
 }

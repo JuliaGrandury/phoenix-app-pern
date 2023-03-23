@@ -1,6 +1,6 @@
 import '../JobBoard/modal.css'
 import { useDispatch } from 'react-redux'
-import { deleteJob } from '../../redux/slices/job/jobsSlice'
+import { deleteJob } from '../../redux/thunks/jobsThunks'
 
 const DangerModal = (props) => {
 
@@ -8,7 +8,6 @@ const DangerModal = (props) => {
     const dispatch = useDispatch();
 
     const onConfirmDelete = () => {
-        console.log(`Deleting job with id ${dangerObject.toDelete}`)
         dispatch(deleteJob(dangerObject.toDelete));
         onClosePopUp();
     }

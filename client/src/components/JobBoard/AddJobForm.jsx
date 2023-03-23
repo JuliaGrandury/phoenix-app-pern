@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { stateAbbrList } from '../../utils/stateAbbr'
 import { useDispatch } from 'react-redux'
-import { addJob, fetchJobs } from '../../redux/slices/job/jobsSlice'
+import { addJob, fetchJobs } from '../../redux/thunks/jobsThunks'
 
 
 const AddJobForm = () => {
@@ -21,7 +21,7 @@ const AddJobForm = () => {
         workstyle: null,
         app_status: null,
         applied_on: null,
-        priority: '5',
+        priority: null,
         created_at: null,
     });
 
@@ -42,7 +42,6 @@ const AddJobForm = () => {
     // submitting form to add a new job
     const handleCreateJob = (event) => {
         event.preventDefault();
-        console.log(formData.applied_on);
         dispatch(addJob(formData));
         dispatch(fetchJobs());
     }
@@ -82,7 +81,13 @@ const AddJobForm = () => {
                 <option value="Rejected">Rejected</option>
                 <option value="Offer">Offer</option>
             </select>
-            <input className="applied_on" type="date" name="applied_on" placeholder="Applied On" onChange={handleAddJobFormChange} />
+            <select className="priority" name='priority' required='required' onChange={handleAddJobFormChange}>
+                <option value="" disabled selected hidden>Priority</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <input className="applied_on" type="date" name="applied_on" placeholder="Select a date" onChange={handleAddJobFormChange} />
 
             <button className='small-btn button-cta save-job' type='submit'>Save Job</button>
         </form>
