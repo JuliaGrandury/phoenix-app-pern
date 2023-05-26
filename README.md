@@ -16,11 +16,11 @@
 
 ## About The Project & Demo
 
-[In the process of being deployed and hosted on AWS Amplify]()
+[In the process of being deployed and hosted on AWS]()
 
 <br/>
 
-https://user-images.githubusercontent.com/46718089/211704287-f8b23186-e7a5-4c33-b174-2096b57f1fbe.mov
+https://github.com/JuliaGrandury/phoenix-app-pern/assets/46718089/74acedd1-4533-4fee-bdf7-0a4fdf39a629
 
 <br/>
 
